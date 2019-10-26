@@ -17,7 +17,7 @@ operate_hour ={'McDonald' : "08.00-24.00",'Mini Wok' : "09.00-20.00", 'Malay Foo
 menu_hours = {'McDonald Breakfast' : "08.00-10.59",'McDonald Lunch': "11.00-23.59",'Mini Wok' : "09.00-20.00", 
               'Malay Food' :"10.00-20.00",'Subway' : "09.00-20.00", 'The Sandwich Guys' : "08.00-19.00"}
 
-#Find Date and Time
+#Find Current Date and Time
 def find_datetime():
   now = datetime.now()
   # dd/mm/YY H:M:S
@@ -64,8 +64,7 @@ def findDay(day, month, year) :
 
 #Print Stall Based on Day and Time (Function C)
 def print_stall_day(day) :
-    # need to include time as well
-    
+    # need to include time as well (how?)
     list_stall_that_day = dictionary[day]
     for i in range(len(list_stall_that_day)) :
         print(i+1,".",list_stall_that_day[i])
@@ -113,7 +112,7 @@ elif choice == 3 :
     year = int(year)
     thatDay = findDay(day, month, year)
     print_stall_again(thatDay)
-    #need to include time as well
+    #need to include time as well (how?)
 elif choice == 4 :
     stall = str(input("Enter stall : "))
     check_operating_hour(stall)
