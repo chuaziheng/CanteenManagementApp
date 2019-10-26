@@ -14,7 +14,7 @@ dictionary = {'Monday' : ["Mini Wok","McDonald Breakfast","McDonald Lunch", "Mal
                 'Sunday' : ["McDonald Breakfast","McDonald Lunch","Subway","Long John"]}
 operate_hour ={'McDonald' : "08.00-24.00",'Mini Wok' : "09.00-20.00", 'Malay Food' :"10.00-20.00",
                'Subway' : "09.00-20.00", 'The Sandwich Guys' : "08.00-19.00"}
-menu_hours = {'McDonald Breakfast' : "08.00-11.00",'McDonald Lunch': "11.00-23.59",'Mini Wok' : "09.00-20.00", 
+menu_hours = {'McDonald Breakfast' : "08.00-10.59",'McDonald Lunch': "11.00-23.59",'Mini Wok' : "09.00-20.00", 
               'Malay Food' :"10.00-20.00",'Subway' : "09.00-20.00", 'The Sandwich Guys' : "08.00-19.00"}
 
 #Find Date and Time
@@ -64,6 +64,8 @@ def findDay(day, month, year) :
 
 #Print Stall Based on Day and Time (Function C)
 def print_stall_day(day) :
+    # need to include time as well
+    
     list_stall_that_day = dictionary[day]
     for i in range(len(list_stall_that_day)) :
         print(i+1,".",list_stall_that_day[i])
@@ -84,11 +86,11 @@ def print_stall_again(day):
     else :
         print_stall_day("Sunday")
 
-#Check Operating Hours
+#Check Operating Hours (Feature F)
 def check_operating_hour(stall):
      print(operate_hour[stall])
 
-#Calculate Queue
+#Calculate Queue (Feature E)
 def check_queue(people):
     time = float(people * 2.5)
     return time
@@ -111,6 +113,7 @@ elif choice == 3 :
     year = int(year)
     thatDay = findDay(day, month, year)
     print_stall_again(thatDay)
+    #need to include time as well
 elif choice == 4 :
     stall = str(input("Enter stall : "))
     check_operating_hour(stall)
