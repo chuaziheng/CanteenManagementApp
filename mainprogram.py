@@ -14,8 +14,8 @@ dictionary = {'Monday' : ["Mini Wok","McDonald Breakfast","McDonald Lunch", "Mal
                 'Sunday' : ["McDonald Breakfast","McDonald Lunch","Subway","Long John"]}
 operate_hour ={'McDonald' : "08.00-24.00",'Mini Wok' : "09.00-20.00", 'Malay Food' :"10.00-20.00",
                'Subway' : "09.00-20.00", 'The Sandwich Guys' : "08.00-19.00"}
-menu_hours = {'McDonald Breakfast' : "08.00-10.59",'McDonald Lunch': "11.00-23.59",'Mini Wok' : "09.00-20.00", 
-              'Malay Food' :"10.00-20.00",'Subway' : "09.00-20.00", 'The Sandwich Guys' : "08.00-19.00"}
+menu_hour = {'McDonald Breakfast' : "08 00 10 59",'McDonald Lunch': "11 00 23 59",'Mini Wok' : "09 00 20 00", 
+              'Malay Food' :"10 00 20 00",'Subway' : "09 00 20 00", 'The Sandwich Guys' : "08 00 19 00"}
 
 #Find Current Date and Time
 def find_datetime():
@@ -50,7 +50,7 @@ def print_stall(list_stall):
     for i in range(len(list_stall)):
         print(i+1,".",list_stall[i])
 
-#Menu when choose choice 1 (Just rough data, later can use Zi Heng's Function)
+#Menu when choose choice 1 
 def display_menu1():
     print_stall(list_of_all_stall)
     choice1 = int(input("Enter which stall do you want :"))
@@ -62,9 +62,28 @@ def findDay(day, month, year) :
     thatDay = day_of_week[dayNumber]
     return thatDay
 
+#Formatting opening hours into datetime format
+def menu_opening_hour():
+    split_list = menu_hour[stall].split ()
+    opening_hour = int(split_list[0])
+    opening_minute = int(split_list[1])
+    now = datetime.now()
+    opening_hours_formatted = now.replace(hour= opening_hour, minute= opening_minute, second=0, microsecond=0)
+    return opening_hours_formatted
+    
+
+#Formatting closing hours into datetime format
+def menu_closing_hour():
+    split_list = menu_hour[stall].split ()
+    closing_hour = int(split_list[2])
+    closing_minute = int(split_list[3])
+    now = datetime.datetime.now()
+    opening_hours_formatted = now.replace(hour= opening_hour, minute= opening_minute, second=0, microsecond=0)
+    return closing_hours_formatted
+
 #Print Stall Based on Day and Time (Function C)
 def print_stall_day(day) :
-    # need to include time as well (how?)
+    # need to include time as well 
     list_stall_that_day = dictionary[day]
     for i in range(len(list_stall_that_day)) :
         print(i+1,".",list_stall_that_day[i])
@@ -112,7 +131,8 @@ elif choice == 3 :
     year = int(year)
     thatDay = findDay(day, month, year)
     print_stall_again(thatDay)
-    #need to include time as well (how?)
+    #need to include time 
+    #while menu_opening_hour < now < menu_closing_hour:
 elif choice == 4 :
     stall = str(input("Enter stall : "))
     check_operating_hour(stall)
