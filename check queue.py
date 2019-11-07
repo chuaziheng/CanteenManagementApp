@@ -8,6 +8,13 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import pickle
+from Database import Stall
+from Database import item
+
+data_file = open("stall_info.out", mode="rb")
+db = pickle.load(data_file)
+data_file.close()
 
 
 class Ui_Dialog(object):
