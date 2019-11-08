@@ -8,13 +8,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import pickle
-from Database import Stall
-from Database import item
-
-data_file = open("stall_info.out", mode="rb")
-db = pickle.load(data_file)
-data_file.close()
 
 
 class Ui_Dialog(object):
@@ -40,24 +33,36 @@ class Ui_Dialog(object):
 "")
         self.label_2.setTextFormat(QtCore.Qt.RichText)
         self.label_2.setObjectName("label_2")
-        self.textEdit = QtWidgets.QTextEdit(Dialog)
-        self.textEdit.setGeometry(QtCore.QRect(310, 40, 61, 41))
-        self.textEdit.setObjectName("textEdit")
-        self.buttonBox_2 = QtWidgets.QDialogButtonBox(Dialog)
-        self.buttonBox_2.setGeometry(QtCore.QRect(30, 100, 341, 32))
-        self.buttonBox_2.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox_2.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
-        self.buttonBox_2.setObjectName("buttonBox_2")
+        self.people = QtWidgets.QTextEdit(Dialog)
+        self.people.setGeometry(QtCore.QRect(310, 40, 61, 41))
+        self.people.setObjectName("people")
+        self.calculateButton = QtWidgets.QPushButton(Dialog)
+        self.calculateButton.setGeometry(QtCore.QRect(170, 110, 112, 34))
+        self.calculateButton.setObjectName("calculateButton")
+        self.calculateButton.clicked.connect(self.check_queue_int)
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept)
         self.buttonBox.rejected.connect(Dialog.reject)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
+    def check_queue_int (self):
+        num_of_people = self.people.toPlainText()
+        while True:
+            try:
+                num_of_people = int(num_of_people)
+                break
+            except ValueError:
+                print ("Not a valid integer, please try again")
+        num = self.people.toPlainText()
+        tim = float(float(num)*2)
+        self.label_2.setText(str(float(tim)))
+    
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.label_2.setText(_translate("Dialog", "Enter the number of people queuing:"))
+        self.calculateButton.setText(_translate("Dialog", "Calculate"))
 
 
 if __name__ == "__main__":
