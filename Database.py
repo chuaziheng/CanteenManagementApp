@@ -26,18 +26,6 @@ class Stall:
         self.closing_time = closing_time
         self.changeover_time = changeover_time
 
-    # Calculate Queue (Feature E)
-    def check_queue(self, people):
-        '''while True:
-            try:
-                people = int(input("Enter number people queueing : "))
-                break
-            except ValueError:
-                print("error.Enter Again")'''
-
-        time = float(people * self.prep_time)
-        return time
-
 
 def create_menu():
     while True:
@@ -46,9 +34,6 @@ def create_menu():
             menu_list = []
             for i in range(0, n):
                 menu_list = menu_list + [input_item()]
-            if n==0:
-                menu_list+=[]
-
             return menu_list
         except:
             continue
@@ -148,5 +133,8 @@ def print_db():
     db = pickle.load(data_file)
     data_file.close()
     sort_data(db)
+    print(Search_item(db, "Mc Donalds"))
 
-    print(db[0].check_queue(5))
+    print(" sort_successful")
+
+
