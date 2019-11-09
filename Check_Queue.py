@@ -18,11 +18,19 @@ class Ui_CheckQueue(object):
         self.label_6.show()
         self.label_7.show()
         self.textEdit.hide()
-        num = self.textEdit.toPlainText()
+        while True:
+            try:
+                num = self.textEdit.toPlainText()
+                num = int(num)
+                print("valid")
+                break
+            except ValueError:
+                print("Not a valid integer, please try again")
+                num.clear()
         tim = float(float(num) * 2)
-        self.label_6.setText(str(int(tim))+" mins")
-        self.label_7.setText(str(int(num))+" ppl")
-        self.back.show() 
+        self.label_6.setText(str(int(tim)) + " mins")
+        self.label_7.setText(str(int(num)) + " ppl")
+        self.back.show()
     
     def backButton(self):
         self.label_5.hide()
