@@ -26,6 +26,18 @@ class Stall:
         self.closing_time = closing_time
         self.changeover_time = changeover_time
 
+    # Calculate Queue (Feature E)
+    def check_queue(self, people):
+        '''while True:
+            try:
+                people = int(input("Enter number people queueing : "))
+                break
+            except ValueError:
+                print("error.Enter Again")'''
+
+        time = float(people * self.prep_time)
+        return time
+
 
 def create_menu():
     while True:
@@ -34,6 +46,9 @@ def create_menu():
             menu_list = []
             for i in range(0, n):
                 menu_list = menu_list + [input_item()]
+            if n==0:
+                menu_list+=[]
+
             return menu_list
         except:
             continue
@@ -109,19 +124,31 @@ def Search_item(db, target):
     while low <= high:
         mid = (low + high) // 2
         if db[mid].st_name.upper() == target.upper():
-            return True
+            return (True, mid)
         elif target.upper() < db[mid].st_name.upper():
             high = mid - 1
         else:
             low = mid + 1
-    return False
+    return (False, -1)
 
 
 def make_db():
     n = int(input("enter number of items in database"))
     db = []
     for i in range(n):
-        db = db + [create_stall()]
+        db.append(create_stall())
+    sort_data(db)
+    data_file = open("stall_info.out", mode="wb")
+    pickle.dump(db, data_file)
+    data_file.close()
+
+def add_items():
+    data_file = open("stall_info.out", mode="rb")
+    db = pickle.load(data_file)
+    data_file.close()
+    n = int(input("enter number of items to add in database"))
+    for i in range(n):
+        db.append(create_stall())
     sort_data(db)
     data_file = open("stall_info.out", mode="wb")
     pickle.dump(db, data_file)
@@ -133,8 +160,7 @@ def print_db():
     db = pickle.load(data_file)
     data_file.close()
     sort_data(db)
-    print(Search_item(db, "Mc Donalds"))
 
-    print(" sort_successful")
+    print(db[0].check_queue(5))
 
 
