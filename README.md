@@ -6,6 +6,7 @@
   use code:
       
       import pickle
+      import functions
       from Database import Stall
       from Database import item
       from Database import sort_data
