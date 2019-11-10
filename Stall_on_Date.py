@@ -28,7 +28,7 @@ class Ui_StallonDate(object):
 
 
         self.proceed.hide()
-        self.pushButton.show()
+        self.pushButton.hide()
         self.ch_stall_2.hide()
         self.timeEdit.hide()
         self.dateEdit.hide()

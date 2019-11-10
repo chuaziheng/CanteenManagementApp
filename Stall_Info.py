@@ -67,7 +67,7 @@ class Ui_StallInfo(object):
         self.label_4.show()
         self.label_5.show()
         self.back.show()
-        self.pushButton.setGeometry(QtCore.QRect(620, 500, 161, 51))
+        self.pushButton.hide()
     
     def openWindow(self):
         self.window = QtWidgets.QMainWindow()
@@ -357,6 +357,7 @@ class Ui_StallInfo(object):
         self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.openWindow)
+        self.pushButton.hide()
 
         self.name_menu1 = QtWidgets.QLabel(self.centralwidget)
         self.name_menu1.setGeometry(QtCore.QRect(50, 350, 311, 61))

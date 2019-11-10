@@ -476,19 +476,19 @@ class Ui_CheckQueue(object):
         self.label_5.show()
         self.label_6.show()
         self.label_7.show()
-        self.textEdit.hide()
-        num = self.textEdit.toPlainText()
+        self.spinBox.hide()
+        num = self.spinBox.value()
         tim = float(float(num) * 2)
-        self.label_6.setText(str(int(tim))+" mins")
-        self.label_7.setText(str(int(num))+" ppl")
-        self.back.show() 
+        self.label_6.setText(str(int(tim)) + " mins")
+        self.label_7.setText(str(int(num)) + " ppl")
+        self.back.show()
     
     def backButton(self):
         self.label_5.hide()
         self.label_6.hide()
         self.label_7.hide()
         self.pushButton.show()
-        self.textEdit.show()
+        self.spinBox.show()
         self.back.hide()
 
     def setupUi(self, MainWindow):
@@ -499,7 +499,7 @@ class Ui_CheckQueue(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(0, 0, 581, 371))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("background.jpeg"))
+        self.label.setPixmap(QtGui.QPixmap("widget background translucent.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
 
@@ -522,14 +522,14 @@ class Ui_CheckQueue(object):
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
 
-        self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
-        self.textEdit.setGeometry(QtCore.QRect(430, 130, 81, 71))
-        font = QtGui.QFont()
-        font.setPointSize(16)
-        self.textEdit.setFont(font)
-        self.textEdit.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.textEdit.setLineWrapMode(QtWidgets.QTextEdit.NoWrap)
-        self.textEdit.setObjectName("textEdit")
+        #self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
+        #self.textEdit.setGeometry(QtCore.QRect(430, 130, 81, 71))
+        #font = QtGui.QFont()
+        #font.setPointSize(16)
+        #self.textEdit.setFont(font)
+        #self.textEdit.setLayoutDirection(QtCore.Qt.LeftToRight)
+        #self.textEdit.setLineWrapMode(QtWidgets.QTextEdit.NoWrap)
+        #self.textEdit.setObjectName("textEdit")
 
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(410, 270, 141, 41))
@@ -628,6 +628,10 @@ class Ui_CheckQueue(object):
         self.back.hide()
         self.back.clicked.connect(self.backButton)
 
+        self.spinBox = QtWidgets.QSpinBox(self.centralwidget)
+        self.spinBox.setGeometry(QtCore.QRect(470, 145, 51, 31))
+        self.spinBox.setObjectName("spinBox")
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 583, 31))
@@ -649,7 +653,7 @@ class Ui_CheckQueue(object):
         self.label_5.setText(_translate("MainWindow", "Time needed for Queueing is"))
         self.label_6.setText(_translate("MainWindow", "mins"))
         self.back.setText(_translate("MainWindow","Back"))
-
+        
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
