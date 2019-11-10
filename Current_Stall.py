@@ -11,21 +11,7 @@ from Database import item
 from datetime import date
 import functions
 list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
-def StallAvailable(hour,mins,db,i,j):
-    op_hour, op_min = db[i].opening_time[j].split()
-    clo_hour, clo_min = db[i].closing_time[j].split()
-    op_hour = int(op_hour)
-    op_min = int(op_min)
-    clo_hour = int(clo_hour)
-    clo_min = int(clo_min)
-    if op_hour < hour < clo_hour :
-        return True
-    elif op_hour == hour and op_min < mins :
-        return True
-    elif clo_hour == hour and mins < clo_hour :
-        return True
-    else :
-        return False 
+
 
 class Ui_CurrentStall(object):
     

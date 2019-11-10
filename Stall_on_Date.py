@@ -15,22 +15,9 @@ from Database import item
 from datetime import date
 import datetime
 import calendar
+import functions
+list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
 
-def StallAvailable(hour,mins,db,i,j):
-    op_hour, op_min = db[i].opening_time[j].split()
-    clo_hour, clo_min = db[i].closing_time[j].split()
-    op_hour = int(op_hour)
-    op_min = int(op_min)
-    clo_hour = int(clo_hour)
-    clo_min = int(clo_min)
-    if op_hour < hour < clo_hour :
-        return True
-    elif op_hour == hour and op_min < mins :
-        return True
-    elif clo_hour == hour and mins < clo_hour :
-        return True
-    else :
-        return False 
 
 class Ui_StallonDate(object):
 
@@ -39,11 +26,7 @@ class Ui_StallonDate(object):
         db = pickle.load(data_file)
         data_file.close()
 
-        list_stall = []
-        list_pic = ["McDonald.png","italian.png","pizzahut.png"]
 
-        for i in range(3):
-            list_stall.append(db[i].st_name)
         self.proceed.hide()
         self.pushButton.show()
         self.ch_stall_2.hide()
@@ -55,14 +38,21 @@ class Ui_StallonDate(object):
         self.comboBox.show()
         self.comboBox.addItem("")
         dates = self.dateEdit.date()
-        days = (dates.day())%7
+        
+        day_of_week = dates.dayOfWeek()-1
+        
+
         times = self.timeEdit.time()
-        hours = times.hour()
-        minut = times.minute()
-        for i in range(3):
-            opens = StallAvailable(hours,minut,db,i,days)
-            if opens == True :
-                self.comboBox.addItem(QtGui.QIcon(list_pic[i]),list_stall[i])
+        if times.minute()>=10:
+            time_input=str(times.hour()) + " " +str(times.minute())
+        else:
+            time_input=str(times.hour()) + " 0" +str(times.minute())
+
+        print(time_input)
+        for i in range(len(db)):
+            
+            if functions.check_within_opHrs(db[i].opening_time[day_of_week],db[i].closing_time[day_of_week], time_input):
+                self.comboBox.addItem(QtGui.QIcon(list_pic[i]),db[i].st_name)
         
 
     def displayStall(self):
@@ -77,12 +67,10 @@ class Ui_StallonDate(object):
         db = pickle.load(data_file)
         data_file.close()
 
-        list_stall = []
-        list_pic = ["McDonald.png","italian.png","pizzahut.png"]
+        
         index = 0
 
-        for i in range(3):
-            list_stall.append(db[i].st_name)
+        
 
         MainWindow.resize(800, 630)
         self.ch_stall.hide()
@@ -90,7 +78,7 @@ class Ui_StallonDate(object):
         self.proceed.hide()
         text = str(self.comboBox.currentText())
         self.stall_name.setText(text)
-        for i in range(3) :
+        for i in range(len(db)) :
             if db[i].st_name == text :
                 index = i
         self.stall_name.show()
@@ -105,8 +93,8 @@ class Ui_StallonDate(object):
         self.close_time.show()
         self.prep_time.setText(str(float(db[index].prep_time)))
         self.prep_time.show()
-        self.change_time.setText(db[index].changeover_time[dayy])
-        self.change_time.show()
+        #self.change_time.setText(db[index].changeover_time[dayy])
+        #self.change_time.show()
         if db[index].halal == True :
             self.halal.setPixmap(QtGui.QPixmap("halal.webp"))
             self.halal.show()
@@ -154,10 +142,7 @@ class Ui_StallonDate(object):
         db = pickle.load(data_file)
         data_file.close()
 
-        list_stall = []
-
-        for i in range(3):
-            list_stall.append(db[i].st_name)
+        
 
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800,630)

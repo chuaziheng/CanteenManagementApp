@@ -32,12 +32,10 @@ class Ui_StallInfo(object):
         db = pickle.load(data_file)
         data_file.close()
 
-        list_stall = []
+         
         
         index = 0
 
-        for i in range(len(db)):
-            list_stall.append(db[i].st_name)
         
         self.ch_stall.hide()
         self.comboBox.hide()
@@ -101,11 +99,10 @@ class Ui_StallInfo(object):
         db = pickle.load(data_file)
         data_file.close()
 
-        list_stall = []
+         
         
 
-        for i in range(len(db)):
-            list_stall.append(db[i].st_name)
+        
         
         FirstWindow.setObjectName("FirstWindow")
         FirstWindow.resize(800, 630)

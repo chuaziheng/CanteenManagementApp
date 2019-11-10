@@ -29,12 +29,10 @@ data_file = open("stall_info.out", mode="rb")
 db = pickle.load(data_file)
 data_file.close()
 
-list_stall = []
-list_pic = ["McDonald.png","italian.png","pizzahut.png"]
+
 index = 0
 
-for i in range(3):
-    list_stall.append(db[i].st_name)
+
 
 class Ui_MainWindow(object):
 
