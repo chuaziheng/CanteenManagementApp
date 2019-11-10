@@ -32,10 +32,7 @@ class Ui_StallInfo(object):
         db = pickle.load(data_file)
         data_file.close()
 
-         
-        
         index = 0
-
         
         self.ch_stall.hide()
         self.comboBox.hide()
@@ -99,11 +96,6 @@ class Ui_StallInfo(object):
         data_file = open("stall_info.out", mode="rb")
         db = pickle.load(data_file)
         data_file.close()
-
-         
-        
-
-        
         
         FirstWindow.setObjectName("FirstWindow")
         FirstWindow.resize(800, 630)

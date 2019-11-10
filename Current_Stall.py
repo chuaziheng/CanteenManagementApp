@@ -54,7 +54,7 @@ class Ui_CurrentStall(object):
         self.prep_time.show()
         #self.change_time.setText(today_db[index].changeover_time[functions.find_day_now()])
         #self.change_time.show()
-        if db[index].halal == True :
+        if db[index].halal == True:
             self.halal.setPixmap(QtGui.QPixmap("halal.webp"))
             self.halal.show()
         self.label_2.show()
