@@ -33,9 +33,10 @@ class Ui_StallonDate(object):
         self.timeEdit.hide()
         self.dateEdit.hide()
         self.av_stall.hide()
-        self.proceed.show()
+        
         self.ch_stall.show()
         self.comboBox.show()
+        self.proceed.show()
         #self.comboBox.addItem("")
         dates = self.dateEdit.date()
         
@@ -54,6 +55,11 @@ class Ui_StallonDate(object):
             if functions.check_within_opHrs(db[i].opening_time[day_of_week],db[i].closing_time[day_of_week], time_input):
                 self.comboBox.addItem(QtGui.QIcon(list_pic[i]),db[i].st_name)
                 db_on_date.append(db[i])
+        
+        print (len( db_on_date))
+        if len( db_on_date)==0:
+            self.proceed.hide()
+        
         
 
     def displayStall(self):
@@ -224,6 +230,7 @@ class Ui_StallonDate(object):
         font.setPointSize(11)
         self.proceed.setFont(font)
         self.proceed.setObjectName("proceed")
+        print(len(db_on_date))
         if len(db_on_date)==0:
             self.proceed.hide()
         self.proceed.clicked.connect(self.displayStall)

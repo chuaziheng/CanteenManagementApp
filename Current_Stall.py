@@ -127,7 +127,7 @@ class Ui_CurrentStall(object):
         self.comboBox = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox.setGeometry(QtCore.QRect(230, 240, 311, 61))
         self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
+        #self.comboBox.addItem("")
         for i in range(len(today_db)):
                 self.comboBox.addItem(QtGui.QIcon(today_pic[i]),today_db[i].st_name)
         
@@ -369,6 +369,8 @@ class Ui_CurrentStall(object):
         font = QtGui.QFont()
         font.setPointSize(11)
         self.pushButton.setFont(font)
+        if len(today_db)==0:
+            self.pushButton.hide()
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.openWindow)
 
