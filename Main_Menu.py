@@ -43,36 +43,36 @@ class Ui_MainWindow(object):
         self.window = Stall_Info.QtWidgets.QMainWindow()
         self.ui = Ui_StallInfo()
         self.ui.setupUi(self.window)
-        MainWindow.hide()
+        #MainWindow.hide()
         self.window.show()
     
     def openWindow2(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_CurrentStall()
         self.ui.setupUi(self.window)
-        MainWindow.hide()
+        #MainWindow.hide()
         self.window.show()
     
     def openWindow3(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_StallonDate()
         self.ui.setupUi(self.window)
-        MainWindow.hide()
+        #MainWindow.hide()
         self.window.show()
     
     def openWindow4(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_OperatingHour()
         self.ui.setupUi(self.window)
-        MainWindow.hide()
+        #MainWindow.hide()
         self.window.show()
     
-    def openWindow5(self):
+    ''''def openWindow5(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_CheckQueue()
         self.ui.setupUi(self.window)
-        MainWindow.hide()
-        self.window.show()
+        #MainWindow.hide()
+        self.window.show()'''
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -166,7 +166,7 @@ class Ui_MainWindow(object):
         self.operating_hour.setObjectName("operating_hour")
         self.operating_hour.clicked.connect(self.openWindow4)
 
-        self.check_queue = QtWidgets.QPushButton(self.centralwidget)
+        """ self.check_queue = QtWidgets.QPushButton(self.centralwidget)
         self.check_queue.setGeometry(QtCore.QRect(180, 530, 411, 41))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(188, 188, 188))
@@ -184,7 +184,7 @@ class Ui_MainWindow(object):
         self.check_queue.setFont(font)
         self.check_queue.setAutoFillBackground(True)
         self.check_queue.setObjectName("check_queue")
-        self.check_queue.clicked.connect(self.openWindow5)
+        self.check_queue.clicked.connect(self.openWindow5) """
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -205,7 +205,7 @@ class Ui_MainWindow(object):
         self.current_stall.setText(_translate("MainWindow", "Current Stall Available"))
         self.stall_on_date.setText(_translate("MainWindow", "Stall on Date"))
         self.operating_hour.setText(_translate("MainWindow", "Check Operating Hour"))
-        self.check_queue.setText(_translate("MainWindow", "Check Queue"))
+        #self.check_queue.setText(_translate("MainWindow", "Check Queue"))
 
 if __name__ == "__main__":
     import sys

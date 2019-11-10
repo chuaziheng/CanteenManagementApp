@@ -9,8 +9,7 @@ import pickle
 from Database import Stall
 from Database import item
 from datetime import date
-import calendar
-import datetime
+import functions
 list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
 def StallAvailable(hour,mins,db,i,j):
     op_hour, op_min = db[i].opening_time[j].split()
