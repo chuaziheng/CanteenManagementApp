@@ -57,15 +57,16 @@ class Ui_StallInfo(object):
         self.close_time.show()
         self.prep_time.setText(str(float(db[index].prep_time)))
         self.prep_time.show()
-        self.change_time.setText(db[index].changeover_time[dayy])
-        self.change_time.show()
+        #if db[index].changeover_time[dayy] != None:
+        #    self.change_time.setText(db[index].changeover_time[dayy])
+        #self.change_time.show()
         if db[index].halal == True :
             self.halal.setPixmap(QtGui.QPixmap("halal.webp"))
             self.halal.show()
         self.label_2.show()
         self.label_3.show()
         self.label_4.show()
-        self.label_5.show()
+        #self.label_5.show()
         self.back.show()
         self.pushButton.hide()
     
