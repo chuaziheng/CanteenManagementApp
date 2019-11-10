@@ -1,6 +1,3 @@
-
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -11,16 +8,8 @@ class Ui_CheckQueue(object):
         self.label_5.show()
         self.label_6.show()
         self.label_7.show()
-        self.textEdit.hide()
-        while True:
-            try:
-                num = self.textEdit.toPlainText()
-                num = int(num)
-                print("valid")
-                break
-            except ValueError:
-                print("Not a valid integer, please try again")
-                num.clear()
+        self.spinBox.hide()
+        num = self.spinBox.value()
         tim = float(float(num) * 2)
         self.label_6.setText(str(int(tim)) + " mins")
         self.label_7.setText(str(int(num)) + " ppl")
@@ -31,7 +20,7 @@ class Ui_CheckQueue(object):
         self.label_6.hide()
         self.label_7.hide()
         self.pushButton.show()
-        self.textEdit.show()
+        self.spinBox.show()
         self.back.hide()
 
     def setupUi(self, MainWindow):
@@ -65,14 +54,14 @@ class Ui_CheckQueue(object):
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
 
-        self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
-        self.textEdit.setGeometry(QtCore.QRect(430, 130, 81, 71))
-        font = QtGui.QFont()
-        font.setPointSize(16)
-        self.textEdit.setFont(font)
-        self.textEdit.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.textEdit.setLineWrapMode(QtWidgets.QTextEdit.NoWrap)
-        self.textEdit.setObjectName("textEdit")
+        #self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
+        #self.textEdit.setGeometry(QtCore.QRect(430, 130, 81, 71))
+        #font = QtGui.QFont()
+        #font.setPointSize(16)
+        #self.textEdit.setFont(font)
+        #self.textEdit.setLayoutDirection(QtCore.Qt.LeftToRight)
+        #self.textEdit.setLineWrapMode(QtWidgets.QTextEdit.NoWrap)
+        #self.textEdit.setObjectName("textEdit")
 
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(410, 270, 141, 41))
@@ -170,6 +159,10 @@ class Ui_CheckQueue(object):
         self.back.setObjectName("back")
         self.back.hide()
         self.back.clicked.connect(self.backButton)
+
+        self.spinBox = QtWidgets.QSpinBox(self.centralwidget)
+        self.spinBox.setGeometry(QtCore.QRect(470, 145, 51, 31))
+        self.spinBox.setObjectName("spinBox")
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
