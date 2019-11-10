@@ -100,7 +100,7 @@ class Ui_CurrentStall(object):
                 for i in range(len(db[index].menu2[0])):
                     name_menu = label_name[i]
                     self.name_menu = QtWidgets.QLabel(self.centralwidget)
-                    self.name_menu.setGeometry(QtCore.QRect(50, 470+30*i, 311, 61))
+                    self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
                     font = QtGui.QFont()
                     font.setFamily("Bradley Hand ITC")
                     font.setPointSize(16)
@@ -111,7 +111,7 @@ class Ui_CurrentStall(object):
 
                     price_menu = price_name[i]
                     self.price_menu = QtWidgets.QLabel(self.centralwidget)
-                    self.price_menu.setGeometry(QtCore.QRect(600, 470 + 30*i, 151, 61))
+                    self.price_menu.setGeometry(QtCore.QRect(600, 340 + 30*i, 151, 61))
                     font = QtGui.QFont()
                     font.setFamily("Bradley Hand ITC")
                     font.setPointSize(16)
@@ -434,8 +434,6 @@ class Ui_CurrentStall(object):
         self.pushButton.show()
         if len(today_db)==0:
             self.pushButton.hide()
-        else: 
-            self.pushButton.show()
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.openWindow)
         #self.pushButton.hide()
