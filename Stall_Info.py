@@ -17,9 +17,618 @@ from datetime import date
 import calendar
 
 list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
+button_name = ["button1","button2","button3","button4","button5","button6","button7"]
+daylist = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+label_name = ["label1","label2","label3","label4","label5","label6","label7"]
+price_name = ["price1","price2","price3","price4","price5","price6","price7"]
 
 class Ui_StallInfo(object):
     
+    def displayMenu1(self):
+        data_file = open("stall_info.out", mode="rb")
+        db = pickle.load(data_file)
+        data_file.close()
+        text = self.stall_name.text()
+        index = 0
+        for i in range(len(db)):
+            if text == db[i].st_name :
+                index = i
+        self.label_6.show()
+        self.monday_menu.hide()
+        self.tuesday_menu.hide()
+        self.wednesday_menu.hide()
+        self.thursday_menu.hide()
+        self.friday_menu.hide()
+        self.saturday_menu.hide()
+        self.sunday_menu.hide()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 310, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Breakfast Menu")
+            self.breakfast.show()
+        for i in range(len(db[index].menu1[0])):
+            name_menu = label_name[i]
+            self.name_menu = QtWidgets.QLabel(self.centralwidget)
+            self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.name_menu.setFont(font)
+            self.name_menu.setObjectName(name_menu)
+            self.name_menu.setText(db[index].menu1[0][i].item_name)
+            self.name_menu.show()
+
+            price_menu = price_name[i]
+            self.price_menu = QtWidgets.QLabel(self.centralwidget)
+            self.price_menu.setGeometry(QtCore.QRect(600, 340 + 30*i, 151, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.price_menu.setFont(font)
+            self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+            self.price_menu.setObjectName(price_menu)
+            self.price_menu.setText(str(db[index].menu1[0][i].price))
+            self.price_menu.show()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 440, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Normal Menu")
+            self.breakfast.show()
+            for i in range(len(db[index].menu2[0])):
+                name_menu = label_name[i]
+                self.name_menu = QtWidgets.QLabel(self.centralwidget)
+                self.name_menu.setGeometry(QtCore.QRect(50, 470+30*i, 311, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.name_menu.setFont(font)
+                self.name_menu.setObjectName(name_menu)
+                self.name_menu.setText(db[index].menu2[0][i].item_name)
+                self.name_menu.show()
+
+                price_menu = price_name[i]
+                self.price_menu = QtWidgets.QLabel(self.centralwidget)
+                self.price_menu.setGeometry(QtCore.QRect(600, 470 + 30*i, 151, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.price_menu.setFont(font)
+                self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+                self.price_menu.setObjectName(price_menu)
+                self.price_menu.setText(str(db[index].menu2[0][i].price))
+                self.price_menu.show()
+
+    def displayMenu2(self):
+        data_file = open("stall_info.out", mode="rb")
+        db = pickle.load(data_file)
+        data_file.close()
+        text = self.stall_name.text()
+        index = 0
+        for i in range(len(db)):
+            if text == db[i].st_name :
+                index = i
+        self.label_6.show()
+        self.monday_menu.hide()
+        self.tuesday_menu.hide()
+        self.wednesday_menu.hide()
+        self.thursday_menu.hide()
+        self.friday_menu.hide()
+        self.saturday_menu.hide()
+        self.sunday_menu.hide()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 310, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Breakfast Menu")
+            self.breakfast.show()
+        for i in range(len(db[index].menu1[1])):
+            name_menu = label_name[i]
+            self.name_menu = QtWidgets.QLabel(self.centralwidget)
+            self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.name_menu.setFont(font)
+            self.name_menu.setObjectName(name_menu)
+            self.name_menu.setText(db[index].menu1[1][i].item_name)
+            self.name_menu.show()
+
+            price_menu = price_name[i]
+            self.price_menu = QtWidgets.QLabel(self.centralwidget)
+            self.price_menu.setGeometry(QtCore.QRect(600, 340 + 30*i, 151, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.price_menu.setFont(font)
+            self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+            self.price_menu.setObjectName(price_menu)
+            self.price_menu.setText(str(db[index].menu1[1][i].price))
+            self.price_menu.show()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 440, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Normal Menu")
+            self.breakfast.show()
+            for i in range(len(db[index].menu2[1])):
+                name_menu = label_name[i]
+                self.name_menu = QtWidgets.QLabel(self.centralwidget)
+                self.name_menu.setGeometry(QtCore.QRect(50, 470+30*i, 311, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.name_menu.setFont(font)
+                self.name_menu.setObjectName(name_menu)
+                self.name_menu.setText(db[index].menu2[1][i].item_name)
+                self.name_menu.show()
+
+                price_menu = price_name[i]
+                self.price_menu = QtWidgets.QLabel(self.centralwidget)
+                self.price_menu.setGeometry(QtCore.QRect(600, 470 + 30*i, 151, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.price_menu.setFont(font)
+                self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+                self.price_menu.setObjectName(price_menu)
+                self.price_menu.setText(str(db[index].menu2[1][i].price))
+                self.price_menu.show()
+
+
+    def displayMenu3(self):
+        data_file = open("stall_info.out", mode="rb")
+        db = pickle.load(data_file)
+        data_file.close()
+        text = self.stall_name.text()
+        index = 0
+        for i in range(len(db)):
+            if text == db[i].st_name :
+                index = i
+        self.label_6.show()
+        self.monday_menu.hide()
+        self.tuesday_menu.hide()
+        self.wednesday_menu.hide()
+        self.thursday_menu.hide()
+        self.friday_menu.hide()
+        self.saturday_menu.hide()
+        self.sunday_menu.hide()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 310, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Breakfast Menu")
+            self.breakfast.show()
+        for i in range(len(db[index].menu1[2])):
+            name_menu = label_name[i]
+            self.name_menu = QtWidgets.QLabel(self.centralwidget)
+            self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.name_menu.setFont(font)
+            self.name_menu.setObjectName(name_menu)
+            self.name_menu.setText(db[index].menu1[2][i].item_name)
+            self.name_menu.show()
+
+            price_menu = price_name[i]
+            self.price_menu = QtWidgets.QLabel(self.centralwidget)
+            self.price_menu.setGeometry(QtCore.QRect(600, 340 + 30*i, 151, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.price_menu.setFont(font)
+            self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+            self.price_menu.setObjectName(price_menu)
+            self.price_menu.setText(str(db[index].menu1[2][i].price))
+            self.price_menu.show()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 440, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Normal Menu")
+            self.breakfast.show()
+            for i in range(len(db[index].menu2[2])):
+                name_menu = label_name[i]
+                self.name_menu = QtWidgets.QLabel(self.centralwidget)
+                self.name_menu.setGeometry(QtCore.QRect(50, 470+30*i, 311, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.name_menu.setFont(font)
+                self.name_menu.setObjectName(name_menu)
+                self.name_menu.setText(db[index].menu2[2][i].item_name)
+                self.name_menu.show()
+
+                price_menu = price_name[i]
+                self.price_menu = QtWidgets.QLabel(self.centralwidget)
+                self.price_menu.setGeometry(QtCore.QRect(600, 470 + 30*i, 151, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.price_menu.setFont(font)
+                self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+                self.price_menu.setObjectName(price_menu)
+                self.price_menu.setText(str(db[index].menu2[2][i].price))
+                self.price_menu.show()
+
+
+    def displayMenu4(self):
+        data_file = open("stall_info.out", mode="rb")
+        db = pickle.load(data_file)
+        data_file.close()
+        text = self.stall_name.text()
+        index = 0
+        for i in range(len(db)):
+            if text == db[i].st_name :
+                index = i
+        self.label_6.show()
+        self.monday_menu.hide()
+        self.tuesday_menu.hide()
+        self.wednesday_menu.hide()
+        self.thursday_menu.hide()
+        self.friday_menu.hide()
+        self.saturday_menu.hide()
+        self.sunday_menu.hide()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 310, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Breakfast Menu")
+            self.breakfast.show()
+        for i in range(len(db[index].menu1[3])):
+            name_menu = label_name[i]
+            self.name_menu = QtWidgets.QLabel(self.centralwidget)
+            self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.name_menu.setFont(font)
+            self.name_menu.setObjectName(name_menu)
+            self.name_menu.setText(db[index].menu1[3][i].item_name)
+            self.name_menu.show()
+
+            price_menu = price_name[i]
+            self.price_menu = QtWidgets.QLabel(self.centralwidget)
+            self.price_menu.setGeometry(QtCore.QRect(600, 340 + 30*i, 151, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.price_menu.setFont(font)
+            self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+            self.price_menu.setObjectName(price_menu)
+            self.price_menu.setText(str(db[index].menu1[3][i].price))
+            self.price_menu.show()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 440, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Normal Menu")
+            self.breakfast.show()
+            for i in range(len(db[index].menu2[3])):
+                name_menu = label_name[i]
+                self.name_menu = QtWidgets.QLabel(self.centralwidget)
+                self.name_menu.setGeometry(QtCore.QRect(50, 470+30*i, 311, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.name_menu.setFont(font)
+                self.name_menu.setObjectName(name_menu)
+                self.name_menu.setText(db[index].menu2[3][i].item_name)
+                self.name_menu.show()
+
+                price_menu = price_name[i]
+                self.price_menu = QtWidgets.QLabel(self.centralwidget)
+                self.price_menu.setGeometry(QtCore.QRect(600, 470 + 30*i, 151, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.price_menu.setFont(font)
+                self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+                self.price_menu.setObjectName(price_menu)
+                self.price_menu.setText(str(db[index].menu2[3][i].price))
+                self.price_menu.show()
+
+
+    def displayMenu5(self):
+        data_file = open("stall_info.out", mode="rb")
+        db = pickle.load(data_file)
+        data_file.close()
+        text = self.stall_name.text()
+        index = 0
+        for i in range(len(db)):
+            if text == db[i].st_name :
+                index = i
+        self.label_6.show()
+        self.monday_menu.hide()
+        self.tuesday_menu.hide()
+        self.wednesday_menu.hide()
+        self.thursday_menu.hide()
+        self.friday_menu.hide()
+        self.saturday_menu.hide()
+        self.sunday_menu.hide()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 310, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Breakfast Menu")
+            self.breakfast.show()
+        for i in range(len(db[index].menu1[4])):
+            name_menu = label_name[i]
+            self.name_menu = QtWidgets.QLabel(self.centralwidget)
+            self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.name_menu.setFont(font)
+            self.name_menu.setObjectName(name_menu)
+            self.name_menu.setText(db[index].menu1[4][i].item_name)
+            self.name_menu.show()
+
+            price_menu = price_name[i]
+            self.price_menu = QtWidgets.QLabel(self.centralwidget)
+            self.price_menu.setGeometry(QtCore.QRect(600, 340 + 30*i, 151, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.price_menu.setFont(font)
+            self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+            self.price_menu.setObjectName(price_menu)
+            self.price_menu.setText(str(db[index].menu1[4][i].price))
+            self.price_menu.show()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 440, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Normal Menu")
+            self.breakfast.show()
+            for i in range(len(db[index].menu2[4])):
+                name_menu = label_name[i]
+                self.name_menu = QtWidgets.QLabel(self.centralwidget)
+                self.name_menu.setGeometry(QtCore.QRect(50, 470+30*i, 311, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.name_menu.setFont(font)
+                self.name_menu.setObjectName(name_menu)
+                self.name_menu.setText(db[index].menu2[4][i].item_name)
+                self.name_menu.show()
+
+                price_menu = price_name[i]
+                self.price_menu = QtWidgets.QLabel(self.centralwidget)
+                self.price_menu.setGeometry(QtCore.QRect(600, 470 + 30*i, 151, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.price_menu.setFont(font)
+                self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+                self.price_menu.setObjectName(price_menu)
+                self.price_menu.setText(str(db[index].menu2[4][i].price))
+                self.price_menu.show()
+
+    def displayMenu6(self):
+        data_file = open("stall_info.out", mode="rb")
+        db = pickle.load(data_file)
+        data_file.close()
+        text = self.stall_name.text()
+        index = 0
+        for i in range(len(db)):
+            if text == db[i].st_name :
+                index = i
+        self.label_6.show()
+        self.monday_menu.hide()
+        self.tuesday_menu.hide()
+        self.wednesday_menu.hide()
+        self.thursday_menu.hide()
+        self.friday_menu.hide()
+        self.saturday_menu.hide()
+        self.sunday_menu.hide()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 310, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Breakfast Menu")
+            self.breakfast.show()
+        for i in range(len(db[index].menu1[5])):
+            name_menu = label_name[i]
+            self.name_menu = QtWidgets.QLabel(self.centralwidget)
+            self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.name_menu.setFont(font)
+            self.name_menu.setObjectName(name_menu)
+            self.name_menu.setText(db[index].menu1[5][i].item_name)
+            self.name_menu.show()
+
+            price_menu = price_name[i]
+            self.price_menu = QtWidgets.QLabel(self.centralwidget)
+            self.price_menu.setGeometry(QtCore.QRect(600, 340 + 30*i, 151, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.price_menu.setFont(font)
+            self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+            self.price_menu.setObjectName(price_menu)
+            self.price_menu.setText(str(db[index].menu1[5][i].price))
+            self.price_menu.show()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 440, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Normal Menu")
+            self.breakfast.show()
+            for i in range(len(db[index].menu2[5])):
+                name_menu = label_name[i]
+                self.name_menu = QtWidgets.QLabel(self.centralwidget)
+                self.name_menu.setGeometry(QtCore.QRect(50, 470+30*i, 311, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.name_menu.setFont(font)
+                self.name_menu.setObjectName(name_menu)
+                self.name_menu.setText(db[index].menu2[5][i].item_name)
+                self.name_menu.show()
+
+                price_menu = price_name[i]
+                self.price_menu = QtWidgets.QLabel(self.centralwidget)
+                self.price_menu.setGeometry(QtCore.QRect(600, 470 + 30*i, 151, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.price_menu.setFont(font)
+                self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+                self.price_menu.setObjectName(price_menu)
+                self.price_menu.setText(str(db[index].menu2[5][i].price))
+                self.price_menu.show()
+
+    def displayMenu7(self):
+        data_file = open("stall_info.out", mode="rb")
+        db = pickle.load(data_file)
+        data_file.close()
+        text = self.stall_name.text()
+        index = 0
+        for i in range(len(db)):
+            if text == db[i].st_name :
+                index = i
+        self.label_6.show()
+        self.monday_menu.hide()
+        self.tuesday_menu.hide()
+        self.wednesday_menu.hide()
+        self.thursday_menu.hide()
+        self.friday_menu.hide()
+        self.saturday_menu.hide()
+        self.sunday_menu.hide()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 310, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Breakfast Menu")
+            self.breakfast.show()
+        for i in range(len(db[index].menu1[6])):
+            name_menu = label_name[i]
+            self.name_menu = QtWidgets.QLabel(self.centralwidget)
+            self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.name_menu.setFont(font)
+            self.name_menu.setObjectName(name_menu)
+            self.name_menu.setText(db[index].menu1[6][i].item_name)
+            self.name_menu.show()
+
+            price_menu = price_name[i]
+            self.price_menu = QtWidgets.QLabel(self.centralwidget)
+            self.price_menu.setGeometry(QtCore.QRect(600, 340 + 30*i, 151, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.price_menu.setFont(font)
+            self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+            self.price_menu.setObjectName(price_menu)
+            self.price_menu.setText(str(db[index].menu1[6][i].price))
+            self.price_menu.show()
+        if index == 3 :
+            self.breakfast = QtWidgets.QLabel(self.centralwidget)
+            self.breakfast.setGeometry(QtCore.QRect(50, 440, 311, 61))
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            font.setBold(True)
+            self.breakfast.setFont(font)
+            self.breakfast.setObjectName("breakfast")
+            self.breakfast.setText("Normal Menu")
+            self.breakfast.show()
+            for i in range(len(db[index].menu2[6])):
+                name_menu = label_name[i]
+                self.name_menu = QtWidgets.QLabel(self.centralwidget)
+                self.name_menu.setGeometry(QtCore.QRect(50, 470+30*i, 311, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.name_menu.setFont(font)
+                self.name_menu.setObjectName(name_menu)
+                self.name_menu.setText(db[index].menu2[6][i].item_name)
+                self.name_menu.show()
+
+                price_menu = price_name[i]
+                self.price_menu = QtWidgets.QLabel(self.centralwidget)
+                self.price_menu.setGeometry(QtCore.QRect(600, 470 + 30*i, 151, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.price_menu.setFont(font)
+                self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+                self.price_menu.setObjectName(price_menu)
+                self.price_menu.setText(str(db[index].menu2[6][i].price))
+                self.price_menu.show()
+
     def displayStall(self):
         d = date.today()
         year = d.year
@@ -64,32 +673,20 @@ class Ui_StallInfo(object):
         self.label_3.show()
         self.label_4.show()
         #self.label_5.show()
-        self.back.show()
-        self.pushButton.hide()
+        self.pushButton.show()
+        self.monday_menu.show()
+        self.tuesday_menu.show()
+        self.wednesday_menu.show()
+        self.thursday_menu.show()
+        self.friday_menu.show()
+        self.saturday_menu.show()
+        self.sunday_menu.show()
     
     def openWindow(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_CheckQueue()
         self.ui.setupUi(self.window)
         self.window.show()
-
-    def backButton(self):
-        self.ch_stall.show()
-        self.comboBox.show()
-        self.proceed.show()
-        self.stall_name.hide()
-        self.logo.hide()
-        self.desc.hide()
-        self.open_time.hide()
-        self.close_time.hide()
-        self.prep_time.hide()
-        self.change_time.hide()
-        self.label_2.hide()
-        self.label_3.hide()
-        self.label_4.hide()
-        self.label_5.hide()
-        self.back.hide()
-        self.pushButton.setGeometry(QtCore.QRect(300, 400, 161, 51))
 
 
     def setupUi(self, FirstWindow):
@@ -98,11 +695,11 @@ class Ui_StallInfo(object):
         data_file.close()
         
         FirstWindow.setObjectName("FirstWindow")
-        FirstWindow.resize(800, 630)
+        FirstWindow.resize(800, 700)
         self.centralwidget = QtWidgets.QWidget(FirstWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(0, 0, 791, 561))
+        self.label.setGeometry(QtCore.QRect(0, 0, 801, 700))
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap("background.jpeg"))
         self.label.setScaledContents(True)
@@ -344,7 +941,7 @@ class Ui_StallInfo(object):
         self.label_6.hide()
 
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(300, 400, 161, 51))
+        self.pushButton.setGeometry(QtCore.QRect(600, 610, 161, 51))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.pushButton.setFont(font)
@@ -434,14 +1031,75 @@ class Ui_StallInfo(object):
         self.price_menu2.setObjectName("price_menu2")
         self.price_menu2.hide()
 
-        self.back = QtWidgets.QPushButton(self.centralwidget)
-        self.back.setGeometry(QtCore.QRect(20, 40, 60, 40))
+        self.monday_menu = QtWidgets.QPushButton(self.centralwidget)
+        self.monday_menu.setGeometry(QtCore.QRect(300, 280, 151, 31))
         font = QtGui.QFont()
         font.setPointSize(9)
-        self.back.setFont(font)
-        self.back.setObjectName("back")
-        self.back.hide()
-        self.back.clicked.connect(self.backButton)
+        self.monday_menu.setFont(font)
+        self.monday_menu.setObjectName("monday_menu")
+        self.monday_menu.setText("Monday Menu")
+        self.monday_menu.clicked.connect(self.displayMenu1)
+        self.monday_menu.hide()
+
+        self.tuesday_menu = QtWidgets.QPushButton(self.centralwidget)
+        self.tuesday_menu.setGeometry(QtCore.QRect(300, 320, 151, 31))
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        self.tuesday_menu.setFont(font)
+        self.tuesday_menu.setObjectName("tuesday_menu")
+        self.tuesday_menu.setText("Tuesday Menu")
+        self.tuesday_menu.clicked.connect(self.displayMenu2)
+        self.tuesday_menu.hide()
+
+        self.wednesday_menu = QtWidgets.QPushButton(self.centralwidget)
+        self.wednesday_menu.setGeometry(QtCore.QRect(300, 360, 151, 31))
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        self.wednesday_menu.setFont(font)
+        self.wednesday_menu.setObjectName("wednesday_menu")
+        self.wednesday_menu.setText("Wednesday Menu")
+        self.wednesday_menu.clicked.connect(self.displayMenu3)
+        self.wednesday_menu.hide()
+
+        self.thursday_menu = QtWidgets.QPushButton(self.centralwidget)
+        self.thursday_menu.setGeometry(QtCore.QRect(300, 400, 151, 31))
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        self.thursday_menu.setFont(font)
+        self.thursday_menu.setObjectName("thursday_menu")
+        self.thursday_menu.setText("Thursday Menu")
+        self.thursday_menu.clicked.connect(self.displayMenu4)
+        self.thursday_menu.hide()
+
+        self.friday_menu = QtWidgets.QPushButton(self.centralwidget)
+        self.friday_menu.setGeometry(QtCore.QRect(300, 440, 151, 31))
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        self.friday_menu.setFont(font)
+        self.friday_menu.setObjectName("friday_menu")
+        self.friday_menu.setText("Friday Menu")
+        self.friday_menu.clicked.connect(self.displayMenu5)
+        self.friday_menu.hide()
+
+        self.saturday_menu = QtWidgets.QPushButton(self.centralwidget)
+        self.saturday_menu.setGeometry(QtCore.QRect(300, 480, 151, 31))
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        self.saturday_menu.setFont(font)
+        self.saturday_menu.setObjectName("saturday_menu")
+        self.saturday_menu.setText("Saturday Menu")
+        self.saturday_menu.clicked.connect(self.displayMenu6)
+        self.saturday_menu.hide()
+
+        self.sunday_menu = QtWidgets.QPushButton(self.centralwidget)
+        self.sunday_menu.setGeometry(QtCore.QRect(300, 520, 151, 31))
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        self.sunday_menu.setFont(font)
+        self.sunday_menu.setObjectName("sunday_menu")
+        self.sunday_menu.setText("Sunday Menu")
+        self.sunday_menu.clicked.connect(self.displayMenu7)
+        self.sunday_menu.hide()
 
         FirstWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(FirstWindow)
@@ -466,8 +1124,7 @@ class Ui_StallInfo(object):
         self.label_6.setText(_translate("FirstWindow", "Menu"))
         self.pushButton.setText(_translate("FirstWindow", "Check Queue"))
         self.proceed.setText(_translate("FirstWindow", "Menu"))
-        self.back.setText(_translate("FirstWindow","Back"))
-
+        
 class Ui_CheckQueue(object):
 
     def calcQueue(self):
