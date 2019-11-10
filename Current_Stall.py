@@ -431,13 +431,14 @@ class Ui_CurrentStall(object):
         font = QtGui.QFont()
         font.setPointSize(11)
         self.pushButton.setFont(font)
+        self.pushButton.show()
         if len(today_db)==0:
             self.pushButton.hide()
         else: 
             self.pushButton.show()
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.openWindow)
-        self.pushButton.hide()
+        #self.pushButton.hide()
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
