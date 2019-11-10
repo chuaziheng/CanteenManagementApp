@@ -11,8 +11,13 @@ from Database import item
 from datetime import date
 import functions
 list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
-
+list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
+button_name = ["button1","button2","button3","button4","button5","button6","button7"]
+daylist = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+label_name = ["label1","label2","label3","label4","label5","label6","label7"]
+price_name = ["price1","price2","price3","price4","price5","price6","price7"]
 p_time=0
+
 class Ui_CurrentStall(object):
     
     def displayStall(self):
@@ -62,25 +67,85 @@ class Ui_CurrentStall(object):
         self.label_4.show()
         #self.label_5.show()
         self.pushButton.show()
-        self.back.show()
-        self.pushButton.setGeometry(QtCore.QRect(620, 500, 161, 51))
-    
-    def backButton(self):
-        self.ch_stall.show()
-        self.comboBox.show()
-        self.proceed.show()
-        self.stall_name.hide()
-        self.logo.hide()
-        self.desc.hide()
-        self.open_time.hide()
-        self.close_time.hide()
-        self.label_2.hide()
-        self.label_3.hide()
-        self.label_4.hide()
-        self.label_5.hide()
-        self.back.hide()
-        self.pushButton.setGeometry(QtCore.QRect(300, 400, 161, 51))
-    
+        self.label_6.show()
+        if index == 3 :
+            hour, mins = functions.find_time_now().split()
+            hour = int(hour)
+            mins = int(mins)
+            if hour < 11 :
+                for i in range(len(today_db[index].menu1[0])):
+                    name_menu = label_name[i]
+                    self.name_menu = QtWidgets.QLabel(self.centralwidget)
+                    self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
+                    font = QtGui.QFont()
+                    font.setFamily("Bradley Hand ITC")
+                    font.setPointSize(16)
+                    self.name_menu.setFont(font)
+                    self.name_menu.setObjectName(name_menu)
+                    self.name_menu.setText(today_db[index].menu1[0][i].item_name)
+                    self.name_menu.show()
+
+                    price_menu = price_name[i]
+                    self.price_menu = QtWidgets.QLabel(self.centralwidget)
+                    self.price_menu.setGeometry(QtCore.QRect(600, 340 + 30*i, 151, 61))
+                    font = QtGui.QFont()
+                    font.setFamily("Bradley Hand ITC")
+                    font.setPointSize(16)
+                    self.price_menu.setFont(font)
+                    self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+                    self.price_menu.setObjectName(price_menu)
+                    self.price_menu.setText(str(today_db[index].menu1[0][i].price))
+                    self.price_menu.show()
+            else :
+                for i in range(len(db[index].menu2[0])):
+                    name_menu = label_name[i]
+                    self.name_menu = QtWidgets.QLabel(self.centralwidget)
+                    self.name_menu.setGeometry(QtCore.QRect(50, 470+30*i, 311, 61))
+                    font = QtGui.QFont()
+                    font.setFamily("Bradley Hand ITC")
+                    font.setPointSize(16)
+                    self.name_menu.setFont(font)
+                    self.name_menu.setObjectName(name_menu)
+                    self.name_menu.setText(db[index].menu2[0][i].item_name)
+                    self.name_menu.show()
+
+                    price_menu = price_name[i]
+                    self.price_menu = QtWidgets.QLabel(self.centralwidget)
+                    self.price_menu.setGeometry(QtCore.QRect(600, 470 + 30*i, 151, 61))
+                    font = QtGui.QFont()
+                    font.setFamily("Bradley Hand ITC")
+                    font.setPointSize(16)
+                    self.price_menu.setFont(font)
+                    self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+                    self.price_menu.setObjectName(price_menu)
+                    self.price_menu.setText(str(db[index].menu2[0][i].price))
+                    self.price_menu.show()
+            
+        else :
+            for i in range(len(db[index].menu1[0])):
+                name_menu = label_name[i]
+                self.name_menu = QtWidgets.QLabel(self.centralwidget)
+                self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.name_menu.setFont(font)
+                self.name_menu.setObjectName(name_menu)
+                self.name_menu.setText(db[index].menu1[0][i].item_name)
+                self.name_menu.show()
+
+                price_menu = price_name[i]
+                self.price_menu = QtWidgets.QLabel(self.centralwidget)
+                self.price_menu.setGeometry(QtCore.QRect(600, 340 + 30*i, 151, 61))
+                font = QtGui.QFont()
+                font.setFamily("Bradley Hand ITC")
+                font.setPointSize(16)
+                self.price_menu.setFont(font)
+                self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+                self.price_menu.setObjectName(price_menu)
+                self.price_menu.setText(str(db[index].menu1[0][i].price))
+                self.price_menu.show()
+
     def openWindow(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_CheckQueue()
@@ -98,11 +163,7 @@ class Ui_CurrentStall(object):
             if functions.check_within_opHrs(db[i].opening_time[functions.find_day_now()],db[i].closing_time[functions.find_day_now()], functions.find_time_now()):
                 today_db.append(db[i])
                 today_pic.append(list_pic[i])
-
- 
-
-
-        
+    
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 630)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -366,7 +427,7 @@ class Ui_CurrentStall(object):
         p_time=db[index].prep_time
 
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(300, 400, 161, 51))
+        self.pushButton.setGeometry(QtCore.QRect(600,500, 161, 51))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.pushButton.setFont(font)
@@ -374,97 +435,7 @@ class Ui_CurrentStall(object):
             self.pushButton.hide()
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.openWindow)
-
-        self.name_menu1 = QtWidgets.QLabel(self.centralwidget)
-        self.name_menu1.setGeometry(QtCore.QRect(50, 350, 311, 61))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(0, 170, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(0, 170, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        self.name_menu1.setPalette(palette)
-        font = QtGui.QFont()
-        font.setFamily("Bradley Hand ITC")
-        font.setPointSize(18)
-        self.name_menu1.setFont(font)
-        self.name_menu1.setObjectName("name_menu1")
-        self.name_menu1.hide()
-
-        self.name_menu2 = QtWidgets.QLabel(self.centralwidget)
-        self.name_menu2.setGeometry(QtCore.QRect(50, 420, 311, 61))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(0, 170, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(0, 170, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        self.name_menu2.setPalette(palette)
-        font = QtGui.QFont()
-        font.setFamily("Bradley Hand ITC")
-        font.setPointSize(18)
-        self.name_menu2.setFont(font)
-        self.name_menu2.setObjectName("name_menu2")
-        self.name_menu2.hide()
-
-        self.price_menu1 = QtWidgets.QLabel(self.centralwidget)
-        self.price_menu1.setGeometry(QtCore.QRect(600, 360, 151, 61))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(0, 170, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(0, 170, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        self.price_menu1.setPalette(palette)
-        font = QtGui.QFont()
-        font.setFamily("Bradley Hand ITC")
-        font.setPointSize(18)
-        self.price_menu1.setFont(font)
-        self.price_menu1.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.price_menu1.setObjectName("price_menu1")
-        self.price_menu1.hide()
-
-        self.price_menu2 = QtWidgets.QLabel(self.centralwidget)
-        self.price_menu2.setGeometry(QtCore.QRect(600, 420, 151, 61))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(0, 170, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(0, 170, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        self.price_menu2.setPalette(palette)
-        font = QtGui.QFont()
-        font.setFamily("Bradley Hand ITC")
-        font.setPointSize(18)
-        self.price_menu2.setFont(font)
-        self.price_menu2.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.price_menu2.setObjectName("price_menu2")
-        self.price_menu2.hide()
-
-        self.back = QtWidgets.QPushButton(self.centralwidget)
-        self.back.setGeometry(QtCore.QRect(20, 40, 60, 40))
-        font = QtGui.QFont()
-        font.setPointSize(9)
-        self.back.setFont(font)
-        self.back.setObjectName("back")
-        self.back.hide()
-        self.back.clicked.connect(self.backButton)
+        self.pushButton.hide()
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -489,7 +460,6 @@ class Ui_CurrentStall(object):
         self.label_6.setText(_translate("MainWindow", "Menu"))
         self.pushButton.setText(_translate("MainWindow", "Check Queue"))
         self.proceed.setText(_translate("MainWindow", "Menu"))
-        self.back.setText(_translate("MainWindow","Back"))
 
 class Ui_CheckQueue(object):
 
