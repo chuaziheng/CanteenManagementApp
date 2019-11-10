@@ -11,7 +11,7 @@ from Database import item
 from datetime import date
 import calendar
 import datetime
-
+list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
 def StallAvailable(hour,mins,db,i,j):
     op_hour, op_min = db[i].opening_time[j].split()
     clo_hour, clo_min = db[i].closing_time[j].split()
@@ -43,10 +43,10 @@ class Ui_CurrentStall(object):
         data_file.close()
 
         list_stall = []
-        list_pic = ["McDonald.png","italian.png","pizzahut.png"]
+        
         index = 0
 
-        for i in range(3):
+        for i in range(len(db)):
             list_stall.append(db[i].st_name)
         
         self.ch_stall.hide()
@@ -54,7 +54,7 @@ class Ui_CurrentStall(object):
         self.proceed.hide()
         text = str(self.comboBox.currentText())
         self.stall_name.setText(text)
-        for i in range(3) :
+        for i in range(len(db)) :
             if db[i].st_name == text :
                 index = i
         self.stall_name.show()
@@ -121,9 +121,9 @@ class Ui_CurrentStall(object):
         dayy = (calendar.weekday(year,month,day)+2)%7
 
         list_stall = []
-        list_pic = ["McDonald.png","italian.png","pizzahut.png"]
+        
 
-        for i in range(3):
+        for i in range(len(db)):
             list_stall.append(db[i].st_name)
         
         MainWindow.setObjectName("MainWindow")
@@ -154,7 +154,7 @@ class Ui_CurrentStall(object):
         for i in range(3):
             opens = StallAvailable(hour,minute,db,i,dayy)
             if opens == True :
-                self.comboBox.addItem(QtGui.QIcon(list_pic[i]),list_stall[i])
+                self.comboBox.addItem(QtGui.QIcon(list_pic[i]),db[i].st_name)
 
         self.proceed = QtWidgets.QPushButton(self.centralwidget)
         self.proceed.setGeometry(QtCore.QRect(300, 330, 161, 51))

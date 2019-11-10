@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>583</width>
-    <height>383</height>
+    <width>438</width>
+    <height>254</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>-40</x>
+      <y>-110</y>
       <width>581</width>
       <height>371</height>
      </rect>
@@ -36,8 +36,8 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>140</y>
+      <x>10</x>
+      <y>90</y>
       <width>371</width>
       <height>41</height>
      </rect>
@@ -89,34 +89,13 @@
      <string>Number of People Queueing</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>130</y>
-      <width>81</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="lineWrapMode">
-     <enum>QTextEdit::NoWrap</enum>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>270</y>
-      <width>141</width>
-      <height>41</height>
+      <x>170</x>
+      <y>190</y>
+      <width>111</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -131,8 +110,8 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>40</y>
+      <x>40</x>
+      <y>10</y>
       <width>371</width>
       <height>71</height>
      </rect>
@@ -190,8 +169,8 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>220</y>
+      <x>10</x>
+      <y>140</y>
       <width>381</width>
       <height>41</height>
      </rect>
@@ -246,8 +225,8 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>220</y>
+      <x>360</x>
+      <y>140</y>
       <width>71</width>
       <height>41</height>
      </rect>
@@ -299,16 +278,16 @@
      <string>mins</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>583</width>
-     <height>31</height>
-    </rect>
-   </property>
+   <widget class="QSpinBox" name="spinBox">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>90</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
