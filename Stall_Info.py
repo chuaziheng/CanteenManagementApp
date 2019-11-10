@@ -16,7 +16,7 @@ from Database import item
 from datetime import date
 import calendar
 
-list_pic = ["","pizzahut.png","McDonald.png", "", "", ""]
+list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
 
 class Ui_StallInfo(object):
     
