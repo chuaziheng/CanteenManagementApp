@@ -141,6 +141,7 @@ class Ui_CurrentStall(object):
         self.proceed.setFont(font)
         self.proceed.setObjectName("proceed")
         if len(today_db)==0:
+            self.comboBox.addItem("Nothing available!")
             self.proceed.hide()
         self.proceed.clicked.connect(self.displayStall)
 
