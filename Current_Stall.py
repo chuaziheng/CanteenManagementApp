@@ -33,8 +33,9 @@ class Ui_CurrentStall(object):
         self.proceed.hide()
         text = str(self.comboBox.currentText())
         self.stall_name.setText(text)
-        for i in range(len(db)) :
-            if today_db[i].st_name == text :
+        index=0
+        for i in range(len(today_db)) :
+            if today_db[i].st_name == text:
                 index = i
         self.stall_name.show()
         self.logo.setPixmap(QtGui.QPixmap(today_pic[index]))
@@ -653,7 +654,7 @@ class Ui_CheckQueue(object):
         self.label_5.setText(_translate("MainWindow", "Time needed for Queueing is"))
         self.label_6.setText(_translate("MainWindow", "mins"))
         self.back.setText(_translate("MainWindow","Back"))
-        
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
