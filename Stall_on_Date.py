@@ -17,10 +17,10 @@ import datetime
 import calendar
 import functions
 list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
-
+db_on_date=[]
 
 class Ui_StallonDate(object):
-
+    
     def displayName(self):
         data_file = open("stall_info.out", mode="rb")
         db = pickle.load(data_file)
@@ -36,7 +36,7 @@ class Ui_StallonDate(object):
         self.proceed.show()
         self.ch_stall.show()
         self.comboBox.show()
-        self.comboBox.addItem("")
+        #self.comboBox.addItem("")
         dates = self.dateEdit.date()
         
         day_of_week = dates.dayOfWeek()-1
@@ -53,6 +53,7 @@ class Ui_StallonDate(object):
             
             if functions.check_within_opHrs(db[i].opening_time[day_of_week],db[i].closing_time[day_of_week], time_input):
                 self.comboBox.addItem(QtGui.QIcon(list_pic[i]),db[i].st_name)
+                db_on_date.append(db[i])
         
 
     def displayStall(self):
@@ -132,15 +133,7 @@ class Ui_StallonDate(object):
         self.window.show()
 
     def setupUi(self, MainWindow):
-        t = datetime.datetime.now()
-        hour = t.hour
-        minute = t.minute
-
-        d = date.today()
-        year = d.year
-        month = d.month
-        day = d.day
-
+        
         data_file = open("stall_info.out", mode="rb")
         db = pickle.load(data_file)
         data_file.close()
@@ -174,6 +167,11 @@ class Ui_StallonDate(object):
         self.comboBox.setObjectName("comboBox")
         self.comboBox.hide()
 
+        d = date.today()
+        year = d.year
+        month = d.month
+        day = d.day
+
         self.dateEdit = QtWidgets.QDateEdit(self.centralwidget)
         self.dateEdit.setGeometry(QtCore.QRect(230, 240, 311, 61))
         font = QtGui.QFont()
@@ -196,6 +194,10 @@ class Ui_StallonDate(object):
         self.ch_stall_2.setAlignment(QtCore.Qt.AlignCenter)
         self.ch_stall_2.setObjectName("ch_stall_2")
 
+        time_now=functions.find_time_now()
+        hour=int(time_now.split()[0])
+        minute=int(time_now.split()[1])
+
         self.timeEdit = QtWidgets.QTimeEdit(self.centralwidget)
         self.timeEdit.setGeometry(QtCore.QRect(230,330, 301, 61))
         font = QtGui.QFont()
@@ -204,6 +206,7 @@ class Ui_StallonDate(object):
         self.timeEdit.setFont(font)
         self.timeEdit.setTime(QtCore.QTime(hour,minute))
         self.timeEdit.setObjectName("timeEdit")
+        
         
 
         self.av_stall = QtWidgets.QPushButton(self.centralwidget)
@@ -221,6 +224,8 @@ class Ui_StallonDate(object):
         font.setPointSize(11)
         self.proceed.setFont(font)
         self.proceed.setObjectName("proceed")
+        if len(db_on_date)==0:
+            self.proceed.hide()
         self.proceed.clicked.connect(self.displayStall)
         self.proceed.hide()
 

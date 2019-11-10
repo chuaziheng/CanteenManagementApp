@@ -129,7 +129,7 @@ class Ui_StallInfo(object):
         self.comboBox = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox.setGeometry(QtCore.QRect(230, 240, 311, 61))
         self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
+        #self.comboBox.addItem("")
         for i in range(len(db)):
             self.comboBox.addItem(QtGui.QIcon(list_pic[i]),db[i].st_name,font)
 

@@ -130,6 +130,9 @@ class Ui_CurrentStall(object):
         self.comboBox.addItem("")
         for i in range(len(today_db)):
                 self.comboBox.addItem(QtGui.QIcon(today_pic[i]),today_db[i].st_name)
+        
+
+        
 
         self.proceed = QtWidgets.QPushButton(self.centralwidget)
         self.proceed.setGeometry(QtCore.QRect(300, 330, 161, 51))
@@ -137,6 +140,8 @@ class Ui_CurrentStall(object):
         font.setPointSize(11)
         self.proceed.setFont(font)
         self.proceed.setObjectName("proceed")
+        if len(today_db)==0:
+            self.proceed.hide()
         self.proceed.clicked.connect(self.displayStall)
 
         self.stall_name = QtWidgets.QLabel(self.centralwidget)
