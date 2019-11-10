@@ -102,7 +102,7 @@ class Ui_StallonDate(object):
         self.label_3.show()
         self.label_4.show()
         self.label_5.show()
-        self.pushButton.show()
+        self.pushButton.hide()
         self.back.show()
         self.pushButton.setGeometry(QtCore.QRect(620, 500, 161, 51))
     

@@ -12,7 +12,7 @@ from datetime import date
 import functions
 list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
 
-
+p_time=0
 class Ui_CurrentStall(object):
     
     def displayStall(self):
@@ -37,6 +37,9 @@ class Ui_CurrentStall(object):
         for i in range(len(today_db)) :
             if today_db[i].st_name == text:
                 index = i
+                break
+        global p_time
+        p_time=db[index].prep_time
         self.stall_name.show()
         self.logo.setPixmap(QtGui.QPixmap(today_pic[index]))
         self.logo.setScaledContents(True)
@@ -346,6 +349,16 @@ class Ui_CurrentStall(object):
         self.label_6.setObjectName("label_6")
         self.label_6.hide()
 
+        text = str(self.comboBox.currentText())
+        self.stall_name.setText(text)
+        index=0
+        for i in range(len(today_db)) :
+            if today_db[i].st_name == text:
+                index = i
+                break
+        global p_time
+        p_time=db[index].prep_time
+
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(300, 400, 161, 51))
         font = QtGui.QFont()
@@ -473,14 +486,15 @@ class Ui_CurrentStall(object):
 class Ui_CheckQueue(object):
 
     def calcQueue(self):
+        print(p_time)
         self.pushButton.hide()
         self.label_5.show()
         self.label_6.show()
         self.label_7.show()
         self.spinBox.hide()
         num = self.spinBox.value()
-        tim = float(float(num) * 2)
-        self.label_6.setText(str(int(tim)) + " mins")
+        tim = float(float(num) * p_time)
+        self.label_6.setText(str(tim) + " mins")
         self.label_7.setText(str(int(num)) + " ppl")
         self.back.show()
     
