@@ -132,7 +132,7 @@ class Ui_CurrentStall(object):
                 font.setPointSize(16)
                 self.name_menu.setFont(font)
                 self.name_menu.setObjectName(name_menu)
-                self.name_menu.setText(db[index].menu1[day][i].item_name)
+                self.name_menu.setText(today_db[index].menu1[day][i].item_name)
                 self.name_menu.show()
 
                 price_menu = price_name[i]
@@ -144,7 +144,7 @@ class Ui_CurrentStall(object):
                 self.price_menu.setFont(font)
                 self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
                 self.price_menu.setObjectName(price_menu)
-                self.price_menu.setText(str(db[index].menu1[day][i].price))
+                self.price_menu.setText(str(today_db[index].menu1[day][i].price))
                 self.price_menu.show()
 
     def openWindow(self):
