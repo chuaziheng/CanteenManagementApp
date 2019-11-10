@@ -68,12 +68,13 @@ class Ui_CurrentStall(object):
         #self.label_5.show()
         self.pushButton.show()
         self.label_6.show()
-        if index == 3 :
+        day = functions.find_day_now()
+        if text == "Mc Donalds" :
             hour, mins = functions.find_time_now().split()
             hour = int(hour)
             mins = int(mins)
             if hour < 11 :
-                for i in range(len(today_db[index].menu1[0])):
+                for i in range(len(today_db[index].menu1[day])):
                     name_menu = label_name[i]
                     self.name_menu = QtWidgets.QLabel(self.centralwidget)
                     self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
@@ -82,7 +83,7 @@ class Ui_CurrentStall(object):
                     font.setPointSize(16)
                     self.name_menu.setFont(font)
                     self.name_menu.setObjectName(name_menu)
-                    self.name_menu.setText(today_db[index].menu1[0][i].item_name)
+                    self.name_menu.setText(today_db[index].menu1[day][i].item_name)
                     self.name_menu.show()
 
                     price_menu = price_name[i]
@@ -94,7 +95,7 @@ class Ui_CurrentStall(object):
                     self.price_menu.setFont(font)
                     self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
                     self.price_menu.setObjectName(price_menu)
-                    self.price_menu.setText(str(today_db[index].menu1[0][i].price))
+                    self.price_menu.setText(str(today_db[index].menu1[day][i].price))
                     self.price_menu.show()
             else :
                 for i in range(len(db[index].menu2[0])):
@@ -106,7 +107,7 @@ class Ui_CurrentStall(object):
                     font.setPointSize(16)
                     self.name_menu.setFont(font)
                     self.name_menu.setObjectName(name_menu)
-                    self.name_menu.setText(db[index].menu2[0][i].item_name)
+                    self.name_menu.setText(db[index].menu2[day][i].item_name)
                     self.name_menu.show()
 
                     price_menu = price_name[i]
@@ -118,11 +119,11 @@ class Ui_CurrentStall(object):
                     self.price_menu.setFont(font)
                     self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
                     self.price_menu.setObjectName(price_menu)
-                    self.price_menu.setText(str(db[index].menu2[0][i].price))
+                    self.price_menu.setText(str(db[index].menu2[day][i].price))
                     self.price_menu.show()
             
         else :
-            for i in range(len(db[index].menu1[0])):
+            for i in range(len(db[index].menu1[day])):
                 name_menu = label_name[i]
                 self.name_menu = QtWidgets.QLabel(self.centralwidget)
                 self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
@@ -131,7 +132,7 @@ class Ui_CurrentStall(object):
                 font.setPointSize(16)
                 self.name_menu.setFont(font)
                 self.name_menu.setObjectName(name_menu)
-                self.name_menu.setText(db[index].menu1[0][i].item_name)
+                self.name_menu.setText(db[index].menu1[day][i].item_name)
                 self.name_menu.show()
 
                 price_menu = price_name[i]
@@ -143,7 +144,7 @@ class Ui_CurrentStall(object):
                 self.price_menu.setFont(font)
                 self.price_menu.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
                 self.price_menu.setObjectName(price_menu)
-                self.price_menu.setText(str(db[index].menu1[0][i].price))
+                self.price_menu.setText(str(db[index].menu1[day][i].price))
                 self.price_menu.show()
 
     def openWindow(self):
@@ -431,12 +432,11 @@ class Ui_CurrentStall(object):
         font = QtGui.QFont()
         font.setPointSize(11)
         self.pushButton.setFont(font)
-        self.pushButton.show()
         if len(today_db)==0:
             self.pushButton.hide()
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.openWindow)
-        #self.pushButton.hide()
+        self.pushButton.hide()
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
