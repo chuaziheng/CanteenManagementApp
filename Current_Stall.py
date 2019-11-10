@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\Andrew Wiraatmaja\Documents\Mini Project CZ1003\Current_Stall.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
+
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -13,67 +9,46 @@ import pickle
 from Database import Stall
 from Database import item
 from datetime import date
-import calendar
-import datetime
+import functions
+list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
 
-def StallAvailable(hour,mins,db,i,j):
-    op_hour, op_min = db[i].opening_time[j].split()
-    clo_hour, clo_min = db[i].closing_time[j].split()
-    op_hour = int(op_hour)
-    op_min = int(op_min)
-    clo_hour = int(clo_hour)
-    clo_min = int(clo_min)
-    if op_hour < hour < clo_hour :
-        return True
-    elif op_hour == hour and op_min < mins :
-        return True
-    elif clo_hour == hour and mins < clo_hour :
-        return True
-    else :
-        return False 
 
 class Ui_CurrentStall(object):
     
     def displayStall(self):
-        d = date.today()
-        year = d.year
-        month = d.month
-        day = d.day
-
-        dayy = (calendar.weekday(year,month,day)+2)%7
-
+        
         data_file = open("stall_info.out", mode="rb")
         db = pickle.load(data_file)
         data_file.close()
-
-        list_stall = []
-        list_pic = ["McDonald.png","italian.png","pizzahut.png"]
-        index = 0
-
-        for i in range(3):
-            list_stall.append(db[i].st_name)
+        today_db=[]
+        today_pic=[]
+        for i in range(len(db)):
+            if functions.check_within_opHrs(db[i].opening_time[functions.find_day_now()],db[i].closing_time[functions.find_day_now()], functions.find_time_now()):
+                today_db.append(db[i])
+                today_pic.append(list_pic[i])
+        
         
         self.ch_stall.hide()
         self.comboBox.hide()
         self.proceed.hide()
         text = str(self.comboBox.currentText())
         self.stall_name.setText(text)
-        for i in range(3) :
-            if db[i].st_name == text :
+        for i in range(len(db)) :
+            if today_db[i].st_name == text :
                 index = i
         self.stall_name.show()
-        self.logo.setPixmap(QtGui.QPixmap(list_pic[index]))
+        self.logo.setPixmap(QtGui.QPixmap(today_pic[index]))
         self.logo.setScaledContents(True)
         self.logo.show()
-        self.desc.setText(db[index].desc)
+        self.desc.setText(today_db[index].desc)
         self.desc.show()
-        self.open_time.setText(db[index].opening_time[dayy])
+        self.open_time.setText(today_db[index].opening_time[functions.find_day_now()])
         self.open_time.show()
-        self.close_time.setText(db[index].closing_time[dayy])
+        self.close_time.setText(today_db[index].closing_time[functions.find_day_now()])
         self.close_time.show()
-        self.prep_time.setText(str(float(db[index].prep_time)))
+        self.prep_time.setText(str(float(today_db[index].prep_time)))
         self.prep_time.show()
-        self.change_time.setText(db[index].changeover_time[dayy])
+        self.change_time.setText(today_db[index].changeover_time[functions.find_day_now()])
         self.change_time.show()
         if db[index].halal == True :
             self.halal.setPixmap(QtGui.QPixmap("halal.webp"))
@@ -112,23 +87,17 @@ class Ui_CurrentStall(object):
         data_file = open("stall_info.out", mode="rb")
         db = pickle.load(data_file)
         data_file.close()
+        today_db=[]
+        today_pic=[]
 
-        t = datetime.datetime.now()
-        hour = t.hour
-        minute = t.minute
+        for i in range(len(db)):
+            if functions.check_within_opHrs(db[i].opening_time[functions.find_day_now()],db[i].closing_time[functions.find_day_now()], functions.find_time_now()):
+                today_db.append(db[i])
+                today_pic.append(list_pic[i])
 
-        d = date.today()
-        year = d.year
-        month = d.month
-        day = d.day
+ 
 
-        dayy = (calendar.weekday(year,month,day)+2)%7
 
-        list_stall = []
-        list_pic = ["McDonald.png","italian.png","pizzahut.png"]
-
-        for i in range(3):
-            list_stall.append(db[i].st_name)
         
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 630)
@@ -155,10 +124,8 @@ class Ui_CurrentStall(object):
         self.comboBox.setGeometry(QtCore.QRect(230, 240, 311, 61))
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
-        for i in range(3):
-            opens = StallAvailable(hour,minute,db,i,dayy)
-            if opens == True :
-                self.comboBox.addItem(QtGui.QIcon(list_pic[i]),list_stall[i])
+        for i in range(len(today_db)):
+                self.comboBox.addItem(QtGui.QIcon(today_pic[i]),today_db[i].st_name)
 
         self.proceed = QtWidgets.QPushButton(self.centralwidget)
         self.proceed.setGeometry(QtCore.QRect(300, 330, 161, 51))

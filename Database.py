@@ -45,9 +45,9 @@ def create_menu():
             n = int(input("enter number of items in menu"))
             menu_list = []
             for i in range(0, n):
-                menu_list = menu_list + [input_item()]
+                menu_list.append(input_item())
             if n==0:
-                menu_list+=[]
+                pass
 
             return menu_list
         except:
@@ -60,7 +60,7 @@ def day_menu():
             menu_list = []
             for i in range(0, 7):  # day 0 starts sunday and saturday is day 6
                 print("enter menu for day", i)
-                menu_list = menu_list + create_menu()
+                menu_list.append(create_menu())
             return menu_list
         except:
             continue
@@ -159,8 +159,5 @@ def print_db():
     data_file = open("stall_info.out", mode="rb")
     db = pickle.load(data_file)
     data_file.close()
-    sort_data(db)
-
-    print(db[0].check_queue(5))
-
-
+    for i in range(len(db)):
+        print (db[i].st_name)

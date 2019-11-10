@@ -7,10 +7,7 @@ from Database import item
 from Database import sort_data
 from Database import Search_item
 
-data_file = open("stall_info.out", mode="rb")
-db = pickle.load(data_file)
-data_file.close()
-sort_data(db)
+
 
 def check_within_opHrs(op_time, cl_time, input_time):
     if op_time==cl_time:
@@ -48,7 +45,7 @@ def find_day_now():
     dt_string = now.strftime("%d %m %Y")
     today = dt_string.split()
     day_of_week = findDay(int(today[2]), int(today[1]), int(today[0]))
-    print (day_of_week)
+    return day_of_week
 
 def find_datetime_now():
     now = datetime.now()

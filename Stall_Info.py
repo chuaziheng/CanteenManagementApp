@@ -16,8 +16,10 @@ from Database import item
 from datetime import date
 import calendar
 
-class Ui_StallInfo(object):
+list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
 
+class Ui_StallInfo(object):
+    
     def displayStall(self):
         d = date.today()
         year = d.year
@@ -30,19 +32,17 @@ class Ui_StallInfo(object):
         db = pickle.load(data_file)
         data_file.close()
 
-        list_stall = []
-        list_pic = ["McDonald.png","italian.png","pizzahut.png"]
+         
+        
         index = 0
 
-        for i in range(3):
-            list_stall.append(db[i].st_name)
         
         self.ch_stall.hide()
         self.comboBox.hide()
         self.proceed.hide()
         text = str(self.comboBox.currentText())
         self.stall_name.setText(text)
-        for i in range(3) :
+        for i in range(len(db)) :
             if db[i].st_name == text :
                 index = i
         self.stall_name.show()
@@ -99,11 +99,10 @@ class Ui_StallInfo(object):
         db = pickle.load(data_file)
         data_file.close()
 
-        list_stall = []
-        list_pic = ["McDonald.png","italian.png","pizzahut.png"]
+         
+        
 
-        for i in range(3):
-            list_stall.append(db[i].st_name)
+        
         
         FirstWindow.setObjectName("FirstWindow")
         FirstWindow.resize(800, 630)
@@ -130,8 +129,8 @@ class Ui_StallInfo(object):
         self.comboBox.setGeometry(QtCore.QRect(230, 240, 311, 61))
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
-        for i in range(3):
-            self.comboBox.addItem(QtGui.QIcon(list_pic[i]),list_stall[i],font)
+        for i in range(len(db)):
+            self.comboBox.addItem(QtGui.QIcon(list_pic[i]),db[i].st_name,font)
 
         self.proceed = QtWidgets.QPushButton(self.centralwidget)
         self.proceed.setGeometry(QtCore.QRect(300, 330, 161, 51))
