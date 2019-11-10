@@ -17,26 +17,19 @@ from datetime import date
 import calendar
 import datetime
 
+label = ["label1","label2","label3","label4","label5","label6","label7"]
+list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
 
 class Ui_OperatingHour(object):
 
     def displayStall(self):
-        d = date.today()
-        year = d.year
-        month = d.month
-        day = d.day
-
-        dayy = (calendar.weekday(year,month,day)+1)%7
-
         data_file = open("stall_info.out", mode="rb")
         db = pickle.load(data_file)
         data_file.close()
 
-        list_stall = []
         index = 0
 
-        for i in range(3):
-            list_stall.append(db[i].st_name)
+        list_day = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 
         self.ch_stall.hide()
         self.comboBox.hide()
@@ -44,48 +37,103 @@ class Ui_OperatingHour(object):
         self.stall_name.show()
         text = str(self.comboBox.currentText())
         self.stall_name.setText(text)
-        for i in range(3) :
+        for i in range(len(db)) :
             if db[i].st_name == text :
                 index = i
         self.desc.setText(db[index].desc)
         self.desc.show()
-        self.open_time.setText(db[index].opening_time[dayy])
-        self.open_time.show()
-        self.close_time.setText(db[index].closing_time[dayy])
-        self.close_time.show()
-        self.label_2.show()
-        self.label_3.show()
-        self.back.show()
-    
-    def backButton(self):
-        self.label_2.hide()
-        self.label_3.hide()
-        self.desc.hide()
-        self.stall_name.hide()
-        self.open_time.hide()
-        self.close_time.hide()
-        self.ch_stall.show()
-        self.comboBox.show()
-        self.proceed.show()
-        self.back.hide()
+        self.logo.setPixmap(QtGui.QPixmap(list_pic[index]))
+        self.logo.setScaledContents(True)
+        self.logo.show()
+
+        for i in range(len(label)):
+            labelname = label[i]
+            self.labelname = QtWidgets.QLabel(self.centralwidget)
+            self.labelname.setGeometry(QtCore.QRect(40, 170 + 40*i, 221, 41))
+            palette = QtGui.QPalette()
+            brush = QtGui.QBrush(QtGui.QColor(255, 255, 0))
+            brush.setStyle(QtCore.Qt.SolidPattern)
+            palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
+            brush = QtGui.QBrush(QtGui.QColor(255, 255, 0))
+            brush.setStyle(QtCore.Qt.SolidPattern)
+            palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
+            brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
+            brush.setStyle(QtCore.Qt.SolidPattern)
+            palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
+            self.labelname.setPalette(palette)
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.labelname.setFont(font)
+            self.labelname.setObjectName(labelname)
+            self.labelname.setText(list_day[i])
+            self.labelname.show()
+
+        for i in range(len(label)):
+            labelname = label[i]
+            self.labelname = QtWidgets.QLabel(self.centralwidget)
+            self.labelname.setGeometry(QtCore.QRect(320, 170 + 40*i, 221, 41))
+            palette = QtGui.QPalette()
+            brush = QtGui.QBrush(QtGui.QColor(255, 255, 0))
+            brush.setStyle(QtCore.Qt.SolidPattern)
+            palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
+            brush = QtGui.QBrush(QtGui.QColor(255, 255, 0))
+            brush.setStyle(QtCore.Qt.SolidPattern)
+            palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
+            brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
+            brush.setStyle(QtCore.Qt.SolidPattern)
+            palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
+            self.labelname.setPalette(palette)
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.labelname.setFont(font)
+            self.labelname.setObjectName(labelname)
+            if db[index].opening_time[i] != db[index].closing_time[i]:
+                self.labelname.setText(db[index].opening_time[i]+"  -")
+            else :
+                self.labelname.setText("     Closed")
+            self.labelname.show()
+        
+        for i in range(len(label)):
+            labelname = label[i]
+            self.labelname = QtWidgets.QLabel(self.centralwidget)
+            self.labelname.setGeometry(QtCore.QRect(430, 170 + 40*i, 221, 41))
+            palette = QtGui.QPalette()
+            brush = QtGui.QBrush(QtGui.QColor(255, 255, 0))
+            brush.setStyle(QtCore.Qt.SolidPattern)
+            palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
+            brush = QtGui.QBrush(QtGui.QColor(255, 255, 0))
+            brush.setStyle(QtCore.Qt.SolidPattern)
+            palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
+            brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
+            brush.setStyle(QtCore.Qt.SolidPattern)
+            palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
+            self.labelname.setPalette(palette)
+            font = QtGui.QFont()
+            font.setFamily("Bradley Hand ITC")
+            font.setPointSize(16)
+            self.labelname.setFont(font)
+            self.labelname.setObjectName(labelname)
+            if db[index].opening_time[i] != db[index].closing_time[i]:
+                self.labelname.setText(db[index].closing_time[i])
+            else :
+                self.labelname.setText("")
+            self.labelname.show()
 
     def setupUi(self, MainWindow):
         data_file = open("stall_info.out", mode="rb")
         db = pickle.load(data_file)
         data_file.close()
 
-        list_stall = []
-        list_pic = ["McDonald.png","italian.png","pizzahut.png"]
-
-        for i in range(3):
-            list_stall.append(db[i].st_name)
+        list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
 
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(578, 383)
+        MainWindow.resize(578, 500)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(0, 0, 571, 371))
+        self.label.setGeometry(QtCore.QRect(0, 0, 571, 800))
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap("background.jpeg"))
         self.label.setScaledContents(True)
@@ -105,8 +153,8 @@ class Ui_OperatingHour(object):
         self.comboBox.setGeometry(QtCore.QRect(130, 160, 311, 61))
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
-        for i in range(3):
-            self.comboBox.addItem(QtGui.QIcon(list_pic[i]),list_stall[i])
+        for i in range(len(db)):
+            self.comboBox.addItem(QtGui.QIcon(list_pic[i]),db[i].st_name)
 
         self.proceed = QtWidgets.QPushButton(self.centralwidget)
         self.proceed.setGeometry(QtCore.QRect(370, 250, 161, 51))
@@ -149,7 +197,7 @@ class Ui_OperatingHour(object):
         self.desc.hide()
 
         self.logo = QtWidgets.QLabel(self.centralwidget)
-        self.logo.setGeometry(QtCore.QRect(70, 10, 141, 81))
+        self.logo.setGeometry(QtCore.QRect(100, 10, 101, 81))
         self.logo.setObjectName("logo")
         self.logo.hide()
 
@@ -192,55 +240,6 @@ class Ui_OperatingHour(object):
         self.label_2.hide()
         self.label_3.hide()
 
-        self.open_time = QtWidgets.QLabel(self.centralwidget)
-        self.open_time.setGeometry(QtCore.QRect(350, 170, 171, 41))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(85, 255, 127))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(85, 255, 127))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        self.open_time.setPalette(palette)
-        font = QtGui.QFont()
-        font.setFamily("Bradley Hand ITC")
-        font.setPointSize(16)
-        self.open_time.setFont(font)
-        self.open_time.setObjectName("open_time")
-        self.open_time.hide()
-
-        self.close_time = QtWidgets.QLabel(self.centralwidget)
-        self.close_time.setGeometry(QtCore.QRect(350, 220, 171, 41))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(85, 255, 127))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(85, 255, 127))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        self.close_time.setPalette(palette)
-        font = QtGui.QFont()
-        font.setFamily("Bradley Hand ITC")
-        font.setPointSize(16)
-        self.close_time.setFont(font)
-        self.close_time.setObjectName("close_time")
-        self.close_time.hide()
-
-        self.back = QtWidgets.QPushButton(self.centralwidget)
-        self.back.setGeometry(QtCore.QRect(20, 40, 60, 40))
-        font = QtGui.QFont()
-        font.setPointSize(9)
-        self.back.setFont(font)
-        self.back.setObjectName("back")
-        self.back.hide()
-        self.back.clicked.connect(self.backButton)
-
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 578, 31))
@@ -262,10 +261,7 @@ class Ui_OperatingHour(object):
         self.logo.setText(_translate("MainWindow", "Logo"))
         self.label_2.setText(_translate("MainWindow", "Opening Hours :"))
         self.label_3.setText(_translate("MainWindow", "Closing Hours :"))
-        self.open_time.setText(_translate("MainWindow", "Open"))
-        self.close_time.setText(_translate("MainWindow", "Close"))
         self.proceed.setText(_translate("MainWindow", "Proceed"))
-        self.back.setText(_translate("MainWindow","Back"))
 
 
 if __name__ == "__main__":
