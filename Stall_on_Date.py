@@ -45,13 +45,22 @@ class Ui_StallonDate(object):
 
         times = self.timeEdit.time()
         if times.minute()>=10:
-            time_input=str(times.hour()) + " " +str(times.minute())
+            str_mn=str(times.minute())  
         else:
-            time_input=str(times.hour()) + " 0" +str(times.minute())
+            str_mn="0" +str(times.minute())
+
+        if times.hour()>=10:
+            str_hr=str(times.hour())  
+        else:
+            str_hr="0" +str(times.hour())
+    
+        
+        time_input=str_hr + " " +str_mn
 
         print(time_input)
         for i in range(len(db)):
-            
+            print(db[i].st_name)
+            print(functions.check_within_opHrs(db[i].opening_time[day_of_week],db[i].closing_time[day_of_week], time_input))
             if functions.check_within_opHrs(db[i].opening_time[day_of_week],db[i].closing_time[day_of_week], time_input):
                 self.comboBox.addItem(QtGui.QIcon(list_pic[i]),db[i].st_name)
                 db_on_date.append(db[i])
