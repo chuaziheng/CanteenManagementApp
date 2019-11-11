@@ -7,13 +7,13 @@ class item:
         self.price = price
 
 
-def input_item():
+def input_item():  # to input the item
     item_name = input("Enter item name")
     item_price = float(input("enter item price"))
     return item(item_name, item_price)
 
 
-class Stall:
+class Stall: 
     def __init__(self, st_name="", desc="", prep_time=0.0, halal=False, menu1=[], menu2=[], opening_time=[],
                  closing_time=[], changeover_time=[]):
         self.st_name = st_name
@@ -39,7 +39,7 @@ class Stall:
         return time
 
 
-def create_menu():
+def create_menu():  # to create the menu list by inputting the item
     while True:
         try:
             n = int(input("enter number of items in menu"))
@@ -54,7 +54,7 @@ def create_menu():
             continue
 
 
-def day_menu():
+def day_menu(): # to create the list of menus for different days of the week
     while True:
         try:
             menu_list = []
@@ -66,11 +66,11 @@ def day_menu():
             continue
 
 
-def input_time():
+def input_time():       # to create a list of times
     while True:
         try:
             time_list = []
-            for i in range(0, 7):
+            for i in range(0, 7):# day 0 starts sunday and saturday is day 6
                 print("enter time for day", i)
                 t = input("enter time in format xx xx")
                 time_list = time_list + [t]
