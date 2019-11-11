@@ -356,6 +356,7 @@ class Ui_StallonDate(object):
         print(len(db_on_date))
         if len(db_on_date)==0:
             self.proceed.hide()
+            self.comboBox.addItem("Nothing Available")
         self.proceed.clicked.connect(self.displayStall)
         self.proceed.hide()
 
