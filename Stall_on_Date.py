@@ -17,9 +17,6 @@ import datetime
 import calendar
 import functions
 list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
-
-
-list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.png",  "chicken_rice.jpg", ""]
 button_name = ["button1","button2","button3","button4","button5","button6","button7"]
 daylist = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 label_name = ["label1","label2","label3","label4","label5","label6","label7"]
@@ -125,9 +122,8 @@ class Ui_StallonDate(object):
         self.pushButton.hide()
         #self.label_5.show()
         if text == "Mc Donalds" :
-            hour, mins = functions.find_time_now().split()
-            hour = int(hour)
-            mins = int(mins)
+            times = self.timeEdit.time()
+            hour = times.hour()
             if hour < 11 :
                 for i in range(len(db_on_date[index].menu1[day])):
                     name_menu = label_name[i]
@@ -153,7 +149,7 @@ class Ui_StallonDate(object):
                     self.price_menu.setText(str(db_on_date[index].menu1[day][i].price))
                     self.price_menu.show()
             else :
-                for i in range(len(db[index].menu2[0])):
+                for i in range(len(db_on_date[index].menu2[day])):
                     name_menu = label_name[i]
                     self.name_menu = QtWidgets.QLabel(self.centralwidget)
                     self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
@@ -226,13 +222,6 @@ class Ui_StallonDate(object):
         self.window.show()
 
     def setupUi(self, MainWindow):
-        
-        data_file = open("stall_info.out", mode="rb")
-        db = pickle.load(data_file)
-        data_file.close()
-
-        
-
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800,630)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
