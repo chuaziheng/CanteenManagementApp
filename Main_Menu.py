@@ -36,41 +36,38 @@ index = 0
 
 class Ui_MainWindow(object):
 
+    #Function to open Stall_Info Menu
+    #Done by Andrew Wiraatmaja
     def openWindow1(self):
         self.window = QtWidgets.QMainWindow()
         self.window = Stall_Info.QtWidgets.QMainWindow()
         self.ui = Ui_StallInfo()
         self.ui.setupUi(self.window)
-        #MainWindow.hide()
         self.window.show()
     
+    #Function to open Current_Stall Menu
+    #Done by Andrew Wiraatmaja
     def openWindow2(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_CurrentStall()
         self.ui.setupUi(self.window)
-        #MainWindow.hide()
         self.window.show()
     
+    #Function to open Stall_on_Date Menu
+    #Done by Andrew Wiraatmaja
     def openWindow3(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_StallonDate()
         self.ui.setupUi(self.window)
-        #MainWindow.hide()
         self.window.show()
     
+    #Function to open Operating_Hour Menu
+    #Done by Andrew Wiraatmaja
     def openWindow4(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_OperatingHour()
         self.ui.setupUi(self.window)
-        #MainWindow.hide()
         self.window.show()
-    
-    ''''def openWindow5(self):
-        self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_CheckQueue()
-        self.ui.setupUi(self.window)
-        #MainWindow.hide()
-        self.window.show()'''
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -164,26 +161,6 @@ class Ui_MainWindow(object):
         self.operating_hour.setObjectName("operating_hour")
         self.operating_hour.clicked.connect(self.openWindow4)
 
-        """ self.check_queue = QtWidgets.QPushButton(self.centralwidget)
-        self.check_queue.setGeometry(QtCore.QRect(180, 530, 411, 41))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(188, 188, 188))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(188, 188, 188))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(188, 188, 188))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
-        self.check_queue.setPalette(palette)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.check_queue.setFont(font)
-        self.check_queue.setAutoFillBackground(True)
-        self.check_queue.setObjectName("check_queue")
-        self.check_queue.clicked.connect(self.openWindow5) """
-
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 31))
@@ -203,7 +180,6 @@ class Ui_MainWindow(object):
         self.current_stall.setText(_translate("MainWindow", "Current Stall Available"))
         self.stall_on_date.setText(_translate("MainWindow", "Stall on Date"))
         self.operating_hour.setText(_translate("MainWindow", "Check Operating Hour"))
-        #self.check_queue.setText(_translate("MainWindow", "Check Queue"))
 
 if __name__ == "__main__":
     import sys
