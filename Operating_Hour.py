@@ -22,6 +22,9 @@ list_pic = ["Subway_logo_brand.png","pizzahut.png","malay_food.jpg","McDonald.pn
 
 class Ui_OperatingHour(object):
 
+    #Function to display stall information
+    #The function also can display stall's operating hour
+    #Done by Andrew Wiraatmaja
     def displayStall(self):
         data_file = open("stall_info.out", mode="rb")
         db = pickle.load(data_file)
