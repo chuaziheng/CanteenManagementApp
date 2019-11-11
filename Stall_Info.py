@@ -947,7 +947,7 @@ class Ui_StallInfo(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(0, 0, 801, 700))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("background.jpeg"))
+        self.label.setPixmap(QtGui.QPixmap("widget background.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
 
