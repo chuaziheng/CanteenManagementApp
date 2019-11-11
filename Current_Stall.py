@@ -524,7 +524,7 @@ class Ui_CurrentStall(object):
             self.pushButton.hide()
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.openWindow)
-        self.pushButton.hide()
+        #self.pushButton.hide()
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
