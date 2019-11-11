@@ -3,6 +3,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_CheckQueue(object):
 
+    #Function to calculate number of queue
+    #Done by Chua Zi Heng
     def calcQueue(self):
         self.pushButton.hide()
         self.label_5.show()
@@ -15,6 +17,8 @@ class Ui_CheckQueue(object):
         self.label_7.setText(str(int(num)) + " ppl")
         self.back.show()
     
+    #Function to go back and calculate queue time
+    #Done by Chua Zi Heng
     def backButton(self):
         self.label_5.hide()
         self.label_6.hide()
@@ -53,15 +57,6 @@ class Ui_CheckQueue(object):
         font.setPointSize(16)
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
-
-        #self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
-        #self.textEdit.setGeometry(QtCore.QRect(430, 130, 81, 71))
-        #font = QtGui.QFont()
-        #font.setPointSize(16)
-        #self.textEdit.setFont(font)
-        #self.textEdit.setLayoutDirection(QtCore.Qt.LeftToRight)
-        #self.textEdit.setLineWrapMode(QtWidgets.QTextEdit.NoWrap)
-        #self.textEdit.setObjectName("textEdit")
 
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(410, 270, 141, 41))
