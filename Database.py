@@ -1,8 +1,13 @@
+#entire file done by Bodipati Kiran
+#this file mainly deals with the definition of data structures, and creation and storage of database
+
 import pickle
+#for loading data into binary file
 
 
+#A class defined to handle the data structure item of a menu, with attributes being item_name and price
 class item:
-    def __init__(self, item_name="", price=0.0):
+    def __init__(self, item_name="", price=0.0): # constructor to initialize the object.
         self.item_name = item_name
         self.price = price
 
@@ -13,18 +18,18 @@ def input_item():  # to input the item
     return item(item_name, item_price)
 
 
-class Stall: 
+class Stall: #class definition to store the information of a stall.
     def __init__(self, st_name="", desc="", prep_time=0.0, halal=False, menu1=[], menu2=[], opening_time=[],
-                 closing_time=[], changeover_time=[]):
-        self.st_name = st_name
-        self.desc = desc
-        self.prep_time = prep_time
-        self.halal = halal
-        self.menu1 = menu1
-        self.menu2 = menu2
+                 closing_time=[], changeover_time=[]):#constructor, with default values to params
+        self.st_name = st_name      #name of stall
+        self.desc = desc            #short description
+        self.prep_time = prep_time  #average time needed to prepare and serve an item
+        self.halal = halal          #variable to check whether halal or not
+        self.menu1 = menu1          #variable to store the menu
+        self.menu2 = menu2          #incase a separate breakfast/special menu exists
         self.opening_time = opening_time
         self.closing_time = closing_time
-        self.changeover_time = changeover_time
+        self.changeover_time = changeover_time #whenever the special menu comes into effect
 
     # Calculate Queue (Feature E)
     def check_queue(self, people):
@@ -86,7 +91,7 @@ def check_halal():
     return False
 
 
-def create_stall():
+def create_stall(): #function for enabling user input and creating the stall object
     st_name = input("Enter Stall name:")
     desc = input("enter Description")
     prep_time = float(input("Enter prep time in minutes"))
@@ -109,7 +114,7 @@ def create_stall():
     return stall_x
 
 
-def sort_data(db):
+def sort_data(db): # sorting data using linear sort
     for i in range(len(db)):
         for j in range(i, len(db)):
             if db[i].st_name.upper()[i] < db[j].st_name.upper()[i]:
@@ -118,7 +123,7 @@ def sort_data(db):
                 db[j] = temp
 
 
-def Search_item(db, target):
+def Search_item(db, target): #search algorithm implemented using binary search.
     low = 0
     high = len(db) - 1
     while low <= high:
@@ -132,17 +137,17 @@ def Search_item(db, target):
     return (False, -1)
 
 
-def make_db():
+def make_db(): #function to create database
     n = int(input("enter number of items in database"))
     db = []
     for i in range(n):
         db.append(create_stall())
     sort_data(db)
-    data_file = open("stall_info.out", mode="wb")
-    pickle.dump(db, data_file)
+    data_file = open("stall_info.out", mode="wb")       #data file object variable
+    pickle.dump(db, data_file)                      #dumping(storing) the data in the file stall_info.out
     data_file.close()
 
-def add_items():
+def add_items(): # function to insert data into a database once created
     data_file = open("stall_info.out", mode="rb")
     db = pickle.load(data_file)
     data_file.close()
@@ -155,7 +160,7 @@ def add_items():
     data_file.close()
 
 
-def print_db():
+def print_db(): # test function, not important
     data_file = open("stall_info.out", mode="rb")
     db = pickle.load(data_file)
     data_file.close()

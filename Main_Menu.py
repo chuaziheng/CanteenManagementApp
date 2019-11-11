@@ -8,7 +8,7 @@ from Stall_Info import Ui_StallInfo
 from Current_Stall import Ui_CurrentStall
 from Stall_on_Date import Ui_StallonDate
 from Operating_Hour import Ui_OperatingHour
-from Check_Queue import Ui_CheckQueue
+
 
 import Stall_Info
 import pickle

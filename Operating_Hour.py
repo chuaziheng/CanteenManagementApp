@@ -8,7 +8,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from Check_Queue import Ui_CheckQueue
+
 
 import pickle
 from Database import Stall
