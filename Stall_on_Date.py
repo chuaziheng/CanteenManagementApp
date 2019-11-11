@@ -25,6 +25,8 @@ db_on_date=[]
 
 class Ui_StallonDate(object):
     
+    #Function to display stall available on selected date and time
+    #Done by Andrew Wiraatmaja
     def displayName(self):
         data_file = open("stall_info.out", mode="rb")
         db = pickle.load(data_file)
@@ -40,7 +42,6 @@ class Ui_StallonDate(object):
         self.ch_stall.show()
         self.comboBox.show()
         self.proceed.show()
-        #self.comboBox.addItem("")
         dates = self.dateEdit.date()
         
         day_of_week = dates.dayOfWeek()-1
@@ -77,7 +78,8 @@ class Ui_StallonDate(object):
             self.proceed.hide()
         
         
-
+    #Function to display stall's information
+    #Done by Andrew Wiraatmaja
     def displayStall(self):
         dates = self.dateEdit.date()
         
@@ -95,7 +97,7 @@ class Ui_StallonDate(object):
         text = str(self.comboBox.currentText())
         self.stall_name.setText(text)
         for i in range(len(db_on_date)) :
-            if db[i].st_name == text :
+            if db_on_date[i].st_name == text :
                 index = i
         self.stall_name.show()
         indexe = 0
@@ -111,11 +113,9 @@ class Ui_StallonDate(object):
         self.open_time.show()
         self.close_time.setText(db_on_date[index].closing_time[day])
         self.close_time.show()
-        self.prep_time.setText(str(float(db_on_date[index].prep_time)))
+        self.prep_time.setText(str(float(db_on_date[index].prep_time))+" minutes")
         self.prep_time.show()
-        #self.change_time.setText(db[index].changeover_time[dayy])
-        #self.change_time.show()
-        if db[index].halal == True :
+        if db_on_date[index].halal == True :
             self.halal.setPixmap(QtGui.QPixmap("halal logo.webp"))
             self.halal.setScaledContents(True)
             self.halal.show()
@@ -356,7 +356,6 @@ class Ui_StallonDate(object):
         print(len(db_on_date))
         if len(db_on_date)==0:
             self.proceed.hide()
-            self.comboBox.addItem("Nothing Available")
         self.proceed.clicked.connect(self.displayStall)
         self.proceed.hide()
 
@@ -414,12 +413,12 @@ class Ui_StallonDate(object):
         self.halal.hide()
 
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(30, 180, 171, 41))
+        self.label_2.setGeometry(QtCore.QRect(30, 180, 191, 31))
         palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 0))
+        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 0))
+        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
         brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
@@ -431,13 +430,14 @@ class Ui_StallonDate(object):
         font.setPointSize(12)
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
+        self.label_2.setAutoFillBackground(True)
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(30, 220, 171, 41))
+        self.label_3.setGeometry(QtCore.QRect(30, 220, 191, 31))
         palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 0))
+        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 0))
+        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
         brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
@@ -448,14 +448,15 @@ class Ui_StallonDate(object):
         font.setFamily("Bradley Hand ITC")
         font.setPointSize(12)
         self.label_3.setFont(font)
+        self.label_3.setAutoFillBackground(True)
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(410, 180, 191, 41))
+        self.label_4.setGeometry(QtCore.QRect(410, 180, 191, 31))
         palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 0))
+        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 0))
+        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
         brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
@@ -467,6 +468,7 @@ class Ui_StallonDate(object):
         font.setPointSize(12)
         self.label_4.setFont(font)
         self.label_4.setObjectName("label_4")
+        self.label_4.setAutoFillBackground(True)
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setGeometry(QtCore.QRect(410, 220, 191, 41))
         palette = QtGui.QPalette()
@@ -491,12 +493,12 @@ class Ui_StallonDate(object):
         self.label_5.hide()
 
         self.open_time = QtWidgets.QLabel(self.centralwidget)
-        self.open_time.setGeometry(QtCore.QRect(210, 180, 171, 41))
+        self.open_time.setGeometry(QtCore.QRect(210, 180, 60, 31))
         palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(85, 255, 127))
+        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(85, 255, 127))
+        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
         brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
@@ -508,15 +510,16 @@ class Ui_StallonDate(object):
         font.setPointSize(12)
         self.open_time.setFont(font)
         self.open_time.setObjectName("open_time")
+        self.open_time.setAutoFillBackground(True)
         self.open_time.hide()
 
         self.close_time = QtWidgets.QLabel(self.centralwidget)
-        self.close_time.setGeometry(QtCore.QRect(210, 220, 171, 41))
+        self.close_time.setGeometry(QtCore.QRect(210, 220, 60, 31))
         palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(85, 255, 127))
+        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(85, 255, 127))
+        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
         brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
@@ -528,15 +531,16 @@ class Ui_StallonDate(object):
         font.setPointSize(12)
         self.close_time.setFont(font)
         self.close_time.setObjectName("close_time")
+        self.close_time.setAutoFillBackground(True)
         self.close_time.hide()
 
         self.prep_time = QtWidgets.QLabel(self.centralwidget)
-        self.prep_time.setGeometry(QtCore.QRect(600, 180, 171, 41))
+        self.prep_time.setGeometry(QtCore.QRect(600, 180, 131, 31))
         palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(85, 255, 127))
+        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(85, 255, 127))
+        brush = QtGui.QBrush(QtGui.QColor(255, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
         brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
@@ -548,6 +552,7 @@ class Ui_StallonDate(object):
         font.setPointSize(12)
         self.prep_time.setFont(font)
         self.prep_time.setObjectName("prep_time")
+        self.prep_time.setAutoFillBackground(True)
         self.prep_time.hide()
 
         self.change_time = QtWidgets.QLabel(self.centralwidget)
