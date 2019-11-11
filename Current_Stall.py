@@ -555,6 +555,8 @@ class Ui_CurrentStall(object):
         self.pushButton.setText(_translate("MainWindow", "Check Queue"))
         self.proceed.setText(_translate("MainWindow", "Menu"))
 
+#CalcQueue function and GUI done by Chua Zi Heng
+#total waiting time is unique for each stall as they have their unique p_time
 class Ui_CheckQueue(object):
 
     def calcQueue(self):
