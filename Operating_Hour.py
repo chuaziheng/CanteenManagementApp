@@ -135,7 +135,7 @@ class Ui_OperatingHour(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(0, 0, 571, 800))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("background.jpeg"))
+        self.label.setPixmap(QtGui.QPixmap("widget background.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
 
