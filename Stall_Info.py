@@ -664,7 +664,6 @@ class Ui_StallInfo(object):
         for i in range(len(db)):
             if text == db[i].st_name :
                 index = i
-        self.label_6.show()
         self.monday_menu.hide()
         self.tuesday_menu.hide()
         self.wednesday_menu.hide()
@@ -672,11 +671,15 @@ class Ui_StallInfo(object):
         self.friday_menu.hide()
         self.saturday_menu.hide()
         self.sunday_menu.hide()
-        for index in range(len(db)):
-            if db[index].opening_time[5] == db[index].closing_time[5] :
+        for i in range(len(db)):
+            if db[i].opening_time[5] == db[i].closing_time[5] :
                 self.label_6.setText("The Stall is Closed")
                 self.label_6.setGeometry(QtCore.QRect(140,400,530,51))
+                self.label_6.show()
         for i in range(len(db[index].menu1[5])):
+            self.label_6.show()
+            self.label_6.setGeometry(QtCore.QRect(260, 280, 231, 51))
+            self.label_6.setText("Menu")
             name_menu = label_name[i]
             self.name_menu = QtWidgets.QLabel(self.centralwidget)
             self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
@@ -723,6 +726,9 @@ class Ui_StallInfo(object):
             self.price_menu.show()
         if index == 3 :
             for i in range(len(db[index].menu2[5])):
+                self.label_6.show()
+                self.label_6.setGeometry(QtCore.QRect(260, 280, 231, 51))
+                self.label_6.setText("Menu")
                 name_menu = label_name[i]
                 self.name_menu = QtWidgets.QLabel(self.centralwidget)
                 self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
@@ -777,7 +783,7 @@ class Ui_StallInfo(object):
         for i in range(len(db)):
             if text == db[i].st_name :
                 index = i
-        self.label_6.show()
+        self.label_6.hide()
         self.monday_menu.hide()
         self.tuesday_menu.hide()
         self.wednesday_menu.hide()
@@ -785,11 +791,15 @@ class Ui_StallInfo(object):
         self.friday_menu.hide()
         self.saturday_menu.hide()
         self.sunday_menu.hide()
-        for index in range(len(db)):
-            if db[index].opening_time[6] == db[index].closing_time[6] :
+        for i in range(len(db)):
+            if db[i].opening_time[6] == db[i].closing_time[6] :
                 self.label_6.setText("The Stall is Closed")
                 self.label_6.setGeometry(QtCore.QRect(140,400,530,51))
+                self.label_6.show()
         for i in range(len(db[index].menu1[6])):
+            self.label_6.show()
+            self.label_6.setGeometry(QtCore.QRect(260, 280, 231, 51))
+            self.label_6.setText("Menu")
             name_menu = label_name[i]
             self.name_menu = QtWidgets.QLabel(self.centralwidget)
             self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
@@ -836,6 +846,9 @@ class Ui_StallInfo(object):
             self.price_menu.show()
         if index == 3 :
             for i in range(len(db[index].menu2[6])):
+                self.label_6.show()
+                self.label_6.setGeometry(QtCore.QRect(260, 280, 231, 51))
+                self.label_6.setText("Menu")
                 name_menu = label_name[i]
                 self.name_menu = QtWidgets.QLabel(self.centralwidget)
                 self.name_menu.setGeometry(QtCore.QRect(50, 340+30*i, 311, 61))
