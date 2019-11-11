@@ -433,6 +433,8 @@ class Ui_CurrentStall(object):
         self.pushButton.setFont(font)
         if len(today_db)==0:
             self.pushButton.hide()
+        else: 
+            self.pushButton.show()
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.openWindow)
         self.pushButton.hide()
